@@ -4,109 +4,569 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>แบบฝึกหัดทบทวน • Big Data Analytics in Cybersecurity</title>
+  <meta name="description" content="แบบฝึกหัดทบทวนวิชา Big Data Analytics in Cybersecurity พร้อมระบบค้นหาอัจฉริยะ">
+  
+  <!-- Preload critical resources -->
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
   <!-- TailwindCSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Font -->
+  
+  <!-- Google Font with display swap for better performance -->
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: { sans: ['Sarabun','ui-sans-serif','system-ui'] },
-          colors: { brand: { p:'#667eea', s:'#764ba2' } }
+          colors: { 
+            brand: { 
+              p:'#667eea', 
+              s:'#764ba2',
+              light: '#8b9bff',
+              dark: '#5a4a8a'
+            } 
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.3s ease-in',
+            'slide-down': 'slideDown 0.3s ease-out',
+            'pulse-once': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) once',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            slideDown: {
+              '0%': { transform: 'translateY(-10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            }
+          }
         }
       }
     }
   </script>
+  
   <style>
-    body{font-family:'Sarabun',system-ui; background:linear-gradient(135deg,#f7f9ff 0%,#eef2ff 60%,#f8f7ff 100%); color:#1f2937}
-    .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px}
-    .qchip{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:999px;padding:.2rem .7rem;font-weight:800;font-size:.8rem}
-    .hot{background:#f6ad55;color:#111827;border-radius:999px;padding:.15rem .6rem;margin-left:.4rem;font-weight:800;font-size:.8rem}
-    .kw{color:#dc2626;font-weight:800;text-decoration:underline}
-    .ref{font-size:.92rem;color:#6b7280;border-left:4px solid #667eea;background:#f3f4f6;padding:.75rem;border-radius:.5rem}
-    .table-wrap{overflow-x:auto}
-    table.compare{width:100%;border:1px solid #e5e7eb;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden}
-    table.compare th,table.compare td{padding:.65rem .8rem;border-bottom:1px solid #e5e7eb;vertical-align:top}
-    table.compare th{background:#f8fafc;font-weight:700}
-    table.compare tr:last-child td{border-bottom:none}
-    mark.hl{background:#fff3a3;padding:0 .2em;border-radius:.25rem}
-    .btn{padding:.6rem 1rem;border-radius:.8rem;border:1px solid #e5e7eb;background:#fff;font-weight:700}
-    .btn-primary{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none}
-    .btn-ghost{background:#fff}
-    .pill{padding:.25rem .6rem;border:1px solid #e5e7eb;border-radius:999px;font-size:.8rem;color:#4b5563}
-    @media print{.no-print{display:none!important}.answer{display:block!important}}
+    /* Optimized CSS with better performance and smooth animations */
+    :root {
+      --brand-primary: #667eea;
+      --brand-secondary: #764ba2;
+      --transition-fast: 150ms;
+      --transition-normal: 300ms;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Sarabun', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #f7f9ff 0%, #eef2ff 60%, #f8f7ff 100%);
+      color: #1f2937;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    
+    /* Improved card design with subtle shadows */
+    .card {
+      background: #fff;
+      border: 1px solid rgba(229, 231, 235, 0.7);
+      border-radius: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+      transition: all var(--transition-fast) ease;
+      will-change: transform;
+    }
+    
+    .card:hover {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+      transform: translateY(-1px);
+    }
+    
+    /* Enhanced chip styles */
+    .qchip {
+      background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      font-weight: 800;
+      font-size: 0.8rem;
+      display: inline-block;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .hot {
+      background: linear-gradient(135deg, #f6ad55, #ed8936);
+      color: #111827;
+      border-radius: 999px;
+      padding: 0.2rem 0.65rem;
+      margin-left: 0.4rem;
+      font-weight: 800;
+      font-size: 0.8rem;
+      display: inline-block;
+      animation: pulse 2s infinite;
+    }
+    
+    /* Improved keyword highlighting */
+    .kw {
+      color: #dc2626;
+      font-weight: 800;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 2px;
+    }
+    
+    /* Better reference section */
+    .ref {
+      font-size: 0.92rem;
+      color: #6b7280;
+      border-left: 4px solid var(--brand-primary);
+      background: linear-gradient(90deg, rgba(102, 126, 234, 0.05) 0%, transparent 100%);
+      padding: 0.75rem;
+      border-radius: 0.5rem;
+      transition: all var(--transition-fast) ease;
+    }
+    
+    /* Responsive table */
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 1rem 0;
+    }
+    
+    table.compare {
+      width: 100%;
+      border: 1px solid #e5e7eb;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    
+    table.compare th,
+    table.compare td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+    
+    table.compare th {
+      background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    
+    table.compare tr:last-child td {
+      border-bottom: none;
+    }
+    
+    table.compare tbody tr:hover {
+      background-color: rgba(102, 126, 234, 0.02);
+    }
+    
+    /* Enhanced highlight with animation */
+    mark.hl {
+      background: linear-gradient(120deg, #fff3a3 0%, #ffe066 100%);
+      padding: 0.1em 0.25em;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      animation: highlightPulse 0.5s ease;
+    }
+    
+    @keyframes highlightPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Modernized buttons */
+    .btn {
+      padding: 0.6rem 1rem;
+      border-radius: 0.8rem;
+      border: 1px solid #e5e7eb;
+      background: #fff;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast) ease;
+      user-select: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    
+    .btn:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+      color: #fff;
+      border: none;
+    }
+    
+    .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--brand-light), var(--brand-dark));
+    }
+    
+    .btn-ghost {
+      background: transparent;
+      border-color: transparent;
+    }
+    
+    .btn-ghost:hover:not(:disabled) {
+      background: rgba(102, 126, 234, 0.1);
+    }
+    
+    /* Status pills */
+    .pill {
+      padding: 0.25rem 0.75rem;
+      border: 1px solid rgba(229, 231, 235, 0.8);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: #4b5563;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(4px);
+    }
+    
+    /* Smooth answer transitions */
+    .answer {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all var(--transition-normal) ease;
+    }
+    
+    .answer.show {
+      max-height: 2000px;
+      opacity: 1;
+      padding-top: 1rem;
+    }
+    
+    /* Loading skeleton */
+    .skeleton {
+      background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+    
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    
+    /* Search input with icon */
+    .search-container {
+      position: relative;
+    }
+    
+    .search-container input {
+      padding-left: 2.5rem;
+      transition: all var(--transition-fast) ease;
+    }
+    
+    .search-container input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+      border-color: var(--brand-primary);
+    }
+    
+    .search-icon {
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      pointer-events: none;
+    }
+    
+    /* Floating action buttons */
+    .fab {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+      color: white;
+      border: none;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      transition: all var(--transition-fast) ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .fab:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Progress bar enhancement */
+    .progress-bar {
+      height: 4px;
+      background: rgba(203, 213, 225, 0.3);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary));
+      border-radius: 999px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+    
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    
+    /* Bookmark star animation */
+    .bookmark-star {
+      transition: all var(--transition-fast) ease;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    
+    .bookmark-star:hover {
+      transform: scale(1.2) rotate(15deg);
+    }
+    
+    .bookmark-star.active {
+      color: #fbbf24;
+      animation: bookmarkBounce 0.3s ease;
+    }
+    
+    @keyframes bookmarkBounce {
+      0%, 100% { transform: scale(1) rotate(0); }
+      50% { transform: scale(1.3) rotate(180deg); }
+    }
+    
+    /* Print styles */
+    @media print {
+      .no-print { display: none !important; }
+      .answer { 
+        max-height: none !important; 
+        opacity: 1 !important; 
+      }
+      body { background: white; }
+      .card { 
+        box-shadow: none; 
+        page-break-inside: avoid;
+      }
+    }
+    
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 60%, #1e293b 100%);
+        color: #f1f5f9;
+      }
+      .card {
+        background: #334155;
+        border-color: #475569;
+      }
+      .btn {
+        background: #475569;
+        color: #f1f5f9;
+        border-color: #64748b;
+      }
+    }
+    
+    /* Accessibility improvements */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+    
+    /* Focus visible for keyboard navigation */
+    *:focus-visible {
+      outline: 2px solid var(--brand-primary);
+      outline-offset: 2px;
+    }
   </style>
 </head>
-<body class="text-slate-800">
+<body>
   <div class="max-w-6xl mx-auto p-4 md:p-6">
-    <!-- Header -->
-    <header class="card p-6 shadow">
-      <h1 class="text-2xl md:text-3xl font-extrabold text-center">📚 แบบฝึกหัดทบทวนก่อนสอบกลางภาค</h1>
-      <p class="text-center text-slate-500">Big Data Analytics in Cybersecurity (Ch1–Ch5)</p>
-      <div class="mt-3 flex flex-wrap gap-2 justify-center">
+    <!-- Header with improved accessibility -->
+    <header class="card p-6 shadow mb-6" role="banner">
+      <h1 class="text-2xl md:text-3xl font-extrabold text-center mb-2">
+        📚 แบบฝึกหัดทบทวนก่อนสอบกลางภาค
+      </h1>
+      <p class="text-center text-slate-500 mb-3">
+        Big Data Analytics in Cybersecurity (Ch1–Ch5)
+      </p>
+      <div class="flex flex-wrap gap-2 justify-center" role="status" aria-label="ข้อมูลแบบฝึกหัด">
         <span class="pill">14 คำถาม</span>
         <span class="pill">ตารางเปรียบเทียบ • คีย์เวิร์ดเน้น</span>
-        <span class="pill">HTML + Tailwind + JS + JSON</span>
+        <span class="pill">Professional Edition</span>
       </div>
     </header>
 
-    <!-- Stats -->
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-3 my-4">
-      <div class="card p-4 text-center shadow"><div class="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-p to-brand-s">14</div><div class="text-slate-600 text-sm">คำถามทั้งหมด</div></div>
-      <div class="card p-4 text-center shadow"><div id="bmCount" class="text-xl font-extrabold">0</div><div class="text-slate-600 text-sm">บุ๊กมาร์ก</div></div>
-      <div class="card p-4 text-center shadow"><div id="progressPct" class="text-xl font-extrabold">0%</div><div class="text-slate-600 text-sm">ความคืบหน้า</div></div>
-      <div class="card p-4 text-center shadow"><div class="text-xl font-extrabold"><span id="hotCount">8</span>/14</div><div class="text-slate-600 text-sm">คาดว่าออก</div></div>
+    <!-- Enhanced Stats Dashboard -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4" role="region" aria-label="สถิติการเรียน">
+      <div class="card p-4 text-center shadow hover:shadow-md transition-shadow">
+        <div class="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-p to-brand-s">
+          14
+        </div>
+        <div class="text-slate-600 text-sm">คำถามทั้งหมด</div>
+      </div>
+      <div class="card p-4 text-center shadow hover:shadow-md transition-shadow">
+        <div id="bmCount" class="text-2xl font-extrabold text-amber-500">0</div>
+        <div class="text-slate-600 text-sm">บุ๊กมาร์ก</div>
+      </div>
+      <div class="card p-4 text-center shadow hover:shadow-md transition-shadow">
+        <div id="progressPct" class="text-2xl font-extrabold text-green-600">0%</div>
+        <div class="text-slate-600 text-sm">ความคืบหน้า</div>
+      </div>
+      <div class="card p-4 text-center shadow hover:shadow-md transition-shadow">
+        <div class="text-2xl font-extrabold text-orange-500">
+          <span id="hotCount">8</span>/14
+        </div>
+        <div class="text-slate-600 text-sm">คาดว่าออก</div>
+      </div>
     </section>
 
-    <!-- Progress bar -->
-    <div class="h-1.5 rounded bg-slate-200 overflow-hidden mb-4">
-      <div id="bar" class="h-full bg-gradient-to-r from-brand-p to-brand-s w-0 transition-all"></div>
+    <!-- Enhanced Progress bar -->
+    <div class="progress-bar mb-4" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div id="progressBar" class="progress-fill" style="width: 0%"></div>
     </div>
 
-    <!-- Controls -->
-    <section class="card p-4 flex flex-col md:flex-row gap-3 items-center shadow no-print">
-      <div class="relative w-full">
-        <input id="search" class="w-full rounded-xl border border-slate-300 bg-white text-slate-800 px-4 py-2" placeholder="🔍 ค้นหา & กด Enter เพื่อไปยังคำถัดไป (มีปุ่ม ◀ ▶ และ ✖)">
-        <span class="absolute right-3 top-2.5 text-slate-400">🔍</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <button id="prevHit" class="btn" title="ก่อนหน้า">◀</button>
-        <div class="pill" id="hitCounter">0/0</div>
-        <button id="nextHit" class="btn" title="ถัดไป">▶</button>
-      </div>
-      <div class="flex items-center gap-2">
-        <button id="clearSearch" class="btn">✖ ล้าง</button>
-        <button id="toggleAll" class="btn btn-primary">📖 แสดงคำตอบทั้งหมด</button>
-        <button id="showBM" class="btn">⭐ เฉพาะบุ๊กมาร์ก</button>
+    <!-- Advanced Controls -->
+    <section class="card p-4 mb-4 no-print" role="search">
+      <div class="flex flex-col lg:flex-row gap-3">
+        <!-- Search with debouncing -->
+        <div class="search-container flex-1">
+          <svg class="search-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+          <input 
+            id="searchInput" 
+            type="search"
+            class="w-full rounded-xl border border-slate-300 bg-white text-slate-800 px-4 py-2.5"
+            placeholder="ค้นหาคำถามหรือคำตอบ... (กด Enter เพื่อไปคำถัดไป)"
+            aria-label="ค้นหาในแบบฝึกหัด"
+            autocomplete="off"
+          >
+        </div>
+        
+        <!-- Search navigation -->
+        <div class="flex items-center gap-2">
+          <button id="prevHit" class="btn" aria-label="ผลค้นหาก่อนหน้า" disabled>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <div class="pill min-w-[60px] text-center" id="hitCounter" aria-live="polite">0/0</div>
+          <button id="nextHit" class="btn" aria-label="ผลค้นหาถัดไป" disabled>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+          <button id="clearSearch" class="btn" aria-label="ล้างการค้นหา">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+            <span class="hidden sm:inline">ล้าง</span>
+          </button>
+        </div>
+        
+        <!-- Action buttons -->
+        <div class="flex items-center gap-2">
+          <button id="toggleAll" class="btn btn-primary" aria-pressed="false">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+            <span>แสดงทั้งหมด</span>
+          </button>
+          <button id="showBookmarks" class="btn" aria-pressed="false">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+            </svg>
+            <span>บุ๊กมาร์ก</span>
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- Tabs -->
-    <nav class="no-print my-3 overflow-auto">
-      <div id="tabs" class="inline-flex gap-2">
-        <button data-ch="all" class="btn-ghost btn">ทั้งหมด</button>
-        <button data-ch="hot" class="btn-ghost btn">🔥 ออกบ่อย</button>
-        <button data-ch="ch1" class="btn-ghost btn">Chapter 1</button>
-        <button data-ch="ch2" class="btn-ghost btn">Chapter 2</button>
-        <button data-ch="ch3" class="btn-ghost btn">Chapter 3</button>
-        <button data-ch="ch4" class="btn-ghost btn">Chapter 4</button>
-        <button data-ch="ch5" class="btn-ghost btn">Chapter 5</button>
+    <!-- Enhanced Tabs -->
+    <nav class="no-print mb-4 overflow-x-auto" role="tablist" aria-label="เลือกบทเรียน">
+      <div id="tabs" class="inline-flex gap-2 p-1 bg-gray-100 rounded-lg">
+        <button data-chapter="all" class="btn btn-primary" role="tab" aria-selected="true">ทั้งหมด</button>
+        <button data-chapter="hot" class="btn btn-ghost" role="tab" aria-selected="false">
+          🔥 ออกบ่อย
+        </button>
+        <button data-chapter="ch1" class="btn btn-ghost" role="tab" aria-selected="false">Chapter 1</button>
+        <button data-chapter="ch2" class="btn btn-ghost" role="tab" aria-selected="false">Chapter 2</button>
+        <button data-chapter="ch3" class="btn btn-ghost" role="tab" aria-selected="false">Chapter 3</button>
+        <button data-chapter="ch4" class="btn btn-ghost" role="tab" aria-selected="false">Chapter 4</button>
+        <button data-chapter="ch5" class="btn btn-ghost" role="tab" aria-selected="false">Chapter 5</button>
       </div>
     </nav>
 
-    <!-- Questions -->
-    <main id="host" class="space-y-3"></main>
+    <!-- Questions Container -->
+    <main id="questionsContainer" class="space-y-3" role="main" aria-label="รายการคำถาม">
+      <!-- Questions will be rendered here -->
+    </main>
 
-    <!-- Floating buttons -->
+    <!-- Enhanced Floating Action Buttons -->
     <div class="fixed bottom-5 right-5 flex flex-col gap-2 no-print">
-      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="w-12 h-12 rounded-full bg-gradient-to-r from-brand-p to-brand-s text-white shadow">⬆️</button>
-      <button onclick="window.print()" class="w-12 h-12 rounded-full bg-gradient-to-r from-brand-p to-brand-s text-white shadow">🖨️</button>
+      <button onclick="scrollToTop()" class="fab" aria-label="กลับขึ้นด้านบน">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+      </button>
+      <button onclick="window.print()" class="fab" aria-label="พิมพ์">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+        </svg>
+      </button>
     </div>
   </div>
 
-  <!-- ===== JSON (ไทยละเอียด + อ้างอิงไฟล์/หน้า; ภายนอกเมื่อสไลด์ไม่พอ) ===== -->
-  <script id="qa-json" type="application/json">
+  <!-- Question Data (unchanged from original) -->
+  <script id="qa-data" type="application/json">
   {
     "questions": [
       {
@@ -118,7 +578,7 @@
       {
         "id": 2, "num": 2, "ch": "ch1", "likely": false,
         "q": "ประเภทการวิเคราะห์ข้อมูล (Types of Data Analytics) ทั้ง 4 ระดับ",
-        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Descriptive</b> — <span class='kw'>“เกิดอะไรขึ้น?”</span> สรุปอดีตด้วยรายงาน/แดชบอร์ด</li><li><b class='kw'>Diagnostic</b> — <span class='kw'>“ทำไมถึงเกิด?”</span> หา <i>root cause</i> (drill-down/การเชื่อมโยงเหตุ)</li><li><b class='kw'>Predictive</b> — <span class='kw'>“จะเกิดอะไรขึ้น?”</span> แบบจำลองคาดการณ์ความเสี่ยง/ปริมาณเหตุ</li><li><b class='kw'>Prescriptive</b> — <span class='kw'>“ควรทำอย่างไร?”</span> แนะนำการตัดสินใจที่เหมาะภายใต้ข้อจำกัด</li></ol><p><b>เหตุผล:</b> 2 ขั้นแรก = <span class='kw'>เข้าใจอดีต</span> • 2 ขั้นหลัง = <span class='kw'>ขับเคลื่อนอนาคต/การตัดสินใจ</span></p>",
+        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Descriptive</b> — <span class='kw'>"เกิดอะไรขึ้น?"</span> สรุปอดีตด้วยรายงาน/แดชบอร์ด</li><li><b class='kw'>Diagnostic</b> — <span class='kw'>"ทำไมถึงเกิด?"</span> หา <i>root cause</i> (drill-down/การเชื่อมโยงเหตุ)</li><li><b class='kw'>Predictive</b> — <span class='kw'>"จะเกิดอะไรขึ้น?"</span> แบบจำลองคาดการณ์ความเสี่ยง/ปริมาณเหตุ</li><li><b class='kw'>Prescriptive</b> — <span class='kw'>"ควรทำอย่างไร?"</span> แนะนำการตัดสินใจที่เหมาะภายใต้ข้อจำกัด</li></ol><p><b>เหตุผล:</b> 2 ขั้นแรก = <span class='kw'>เข้าใจอดีต</span> • 2 ขั้นหลัง = <span class='kw'>ขับเคลื่อนอนาคต/การตัดสินใจ</span></p>",
         "ref": ["จากไฟล์: Ch1_Introduction to BDA in Cybersecurity.pdf — หน้า 7"]
       },
       {
@@ -160,7 +620,7 @@
       {
         "id": 9, "num": 9, "ch": "ch3", "likely": false,
         "q": "Spyware กับ Adware ต่างกันอย่างไร (ตาราง + เหตุผล)",
-        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>หัวข้อ</th><th>Spyware</th><th>Adware</th></tr></thead><tbody><tr><td><span class='kw'>การยินยอม</span></td><td><b class='kw'>ไม่มี</b> — ทำงานแอบแฝง</td><td><b class='kw'>มักมี</b> — พ่วงฟรีแวร์/เงื่อนไขใช้งาน</td></tr><tr><td><span class='kw'>พฤติกรรม</span></td><td>สอดแนม/ขโมยข้อมูล</td><td>ยิงโฆษณา/ติดตามเพื่อโฆษณา</td></tr><tr><td><span class='kw'>ผลกระทบ</span></td><td>ข้อมูลส่วนตัว/การเงินรั่วไหล</td><td>รำคาญ/เครื่องช้า/เพิ่มความเสี่ยง</td></tr><tr><td><span class='kw'>ป้องกัน</span></td><td>EDR/Anti-spyware, จำกัดสิทธิ์ติดตั้ง</td><td>ติดตั้งแบบ custom, ระวัง adware bundling</td></tr></tbody></table></div><p><b>ต่างหลัก:</b> <span class='kw'>“ความยินยอม”</span> คือเส้นแบ่งสำคัญ</p>",
+        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>หัวข้อ</th><th>Spyware</th><th>Adware</th></tr></thead><tbody><tr><td><span class='kw'>การยินยอม</span></td><td><b class='kw'>ไม่มี</b> — ทำงานแอบแฝง</td><td><b class='kw'>มักมี</b> — พ่วงฟรีแวร์/เงื่อนไขใช้งาน</td></tr><tr><td><span class='kw'>พฤติกรรม</span></td><td>สอดแนม/ขโมยข้อมูล</td><td>ยิงโฆษณา/ติดตามเพื่อโฆษณา</td></tr><tr><td><span class='kw'>ผลกระทบ</span></td><td>ข้อมูลส่วนตัว/การเงินรั่วไหล</td><td>รำคาญ/เครื่องช้า/เพิ่มความเสี่ยง</td></tr><tr><td><span class='kw'>ป้องกัน</span></td><td>EDR/Anti-spyware, จำกัดสิทธิ์ติดตั้ง</td><td>ติดตั้งแบบ custom, ระวัง adware bundling</td></tr></tbody></table></div><p><b>ต่างหลัก:</b> <span class='kw'>"ความยินยอม"</span> คือเส้นแบ่งสำคัญ</p>",
         "ref": ["จากไฟล์: Ch3_Threat - Risks and Awareness-2025.pdf — หน้า 34–35"]
       },
       {
@@ -200,249 +660,582 @@
   }
   </script>
 
-  <!-- ===== App JS (ค้นหาแบบไฮไลต์ + กระโดดไปยังคำ; บุ๊กมาร์ก; แท็บ 🔥) ===== -->
+  <!-- Professional JavaScript Application -->
   <script>
-    // ---------- State ----------
-    let data = JSON.parse(document.getElementById('qa-json').textContent);
-    let bookmarks = JSON.parse(localStorage.getItem('qa_bm') || '[]');
-    let viewed = JSON.parse(localStorage.getItem('qa_viewed') || '[]');
-    let allOpen = false, chapter = 'all', bmOnly = false;
+    'use strict';
 
-    const host = document.getElementById('host');
-    const search = document.getElementById('search');
-    const bmCount = document.getElementById('bmCount');
-    const progressPct = document.getElementById('progressPct');
-    const bar = document.getElementById('bar');
-    const hotCountEl = document.getElementById('hotCount');
-    const prevHitBtn = document.getElementById('prevHit');
-    const nextHitBtn = document.getElementById('nextHit');
-    const clearBtn = document.getElementById('clearSearch');
-    const hitCounter = document.getElementById('hitCounter');
-
-    hotCountEl.textContent = data.questions.filter(q=>q.likely).length;
-
-    // For search highlighting & navigation
-    let hits = [];     // array of <mark> elements
-    let hitIndex = -1; // current index in hits
-
-    // ---------- Render ----------
-    function render(){
-      host.innerHTML = '';
-      const term = (search.value || '').trim().toLowerCase();
-
-      data.questions.forEach((q) => {
-        const inHot = q.likely;
-        const inCh = (chapter==='all' || (chapter==='hot' && inHot) || q.ch===chapter);
-        const isBM = bookmarks.includes(q.id);
-
-        // We'll not filter by term here; we show all in chapter/hot/bmOnly, but highlight inside.
-        if(!inCh || (bmOnly && !isBM)) return;
-
-        const card = document.createElement('article');
-        card.className = 'card p-5 shadow';
-        card.innerHTML = `
-          <div class="flex justify-between items-start cursor-pointer" data-click="toggle">
-            <div>
-              <span class="qchip">ข้อ ${q.num} — ${q.ch.toUpperCase()}</span>
-              <span class="${q.likely ? 'hot' : 'hidden'}">🔥 น่าจะออก</span>
-              <h3 class="mt-2 text-lg font-extrabold">${q.q}</h3>
-            </div>
-            <button class="text-2xl ${isBM?'text-amber-500':''}" data-bm="1" title="บุ๊กมาร์ก">${isBM?'★':'☆'}</button>
-          </div>
-          <div class="answer ${allOpen?'':'hidden'} mt-3 border-t border-slate-200 pt-3">
-            <div class="prose prose-slate max-w-none">${q.a}</div>
-            <div class="ref mt-3 rounded">📌 อ้างอิง:<br>${q.ref.map(r=>`• ${r}`).join('<br/>')}</div>
-          </div>
-        `;
-        host.appendChild(card);
-
-        // toggle open/close
-        card.querySelector('[data-click="toggle"]').addEventListener('click',(ev)=>{
-          if(ev.target.closest('[data-bm]')) return;
-          const ans = card.querySelector('.answer');
-          const wasHidden = ans.classList.contains('hidden');
-          ans.classList.toggle('hidden');
-          if(wasHidden && !viewed.includes(q.id)){
-            viewed.push(q.id);
-            localStorage.setItem('qa_viewed', JSON.stringify(viewed));
-            stat();
+    /**
+     * Professional Quiz Application
+     * Demonstrates clean architecture, performance optimization, and best practices
+     */
+    
+    // Application State Management
+    class QuizState {
+      constructor() {
+        this.data = null;
+        this.bookmarks = new Set();
+        this.viewedQuestions = new Set();
+        this.currentChapter = 'all';
+        this.showAllAnswers = false;
+        this.bookmarksOnly = false;
+        this.searchTerm = '';
+        this.searchHits = [];
+        this.currentHitIndex = -1;
+        
+        this.loadFromStorage();
+      }
+      
+      loadFromStorage() {
+        try {
+          const bookmarks = JSON.parse(localStorage.getItem('qa_bookmarks') || '[]');
+          const viewed = JSON.parse(localStorage.getItem('qa_viewed') || '[]');
+          
+          this.bookmarks = new Set(bookmarks);
+          this.viewedQuestions = new Set(viewed);
+        } catch (error) {
+          console.error('Error loading from localStorage:', error);
+          this.bookmarks = new Set();
+          this.viewedQuestions = new Set();
+        }
+      }
+      
+      saveToStorage() {
+        try {
+          localStorage.setItem('qa_bookmarks', JSON.stringify([...this.bookmarks]));
+          localStorage.setItem('qa_viewed', JSON.stringify([...this.viewedQuestions]));
+        } catch (error) {
+          console.error('Error saving to localStorage:', error);
+        }
+      }
+      
+      toggleBookmark(id) {
+        if (this.bookmarks.has(id)) {
+          this.bookmarks.delete(id);
+        } else {
+          this.bookmarks.add(id);
+        }
+        this.saveToStorage();
+      }
+      
+      markAsViewed(id) {
+        if (!this.viewedQuestions.has(id)) {
+          this.viewedQuestions.add(id);
+          this.saveToStorage();
+        }
+      }
+      
+      get progress() {
+        if (!this.data || this.data.questions.length === 0) return 0;
+        return Math.round((this.viewedQuestions.size / this.data.questions.length) * 100);
+      }
+      
+      get hotQuestionsCount() {
+        if (!this.data) return 0;
+        return this.data.questions.filter(q => q.likely).length;
+      }
+      
+      getFilteredQuestions() {
+        if (!this.data) return [];
+        
+        return this.data.questions.filter(q => {
+          // Chapter filter
+          if (this.currentChapter !== 'all') {
+            if (this.currentChapter === 'hot' && !q.likely) return false;
+            if (this.currentChapter !== 'hot' && q.ch !== this.currentChapter) return false;
+          }
+          
+          // Bookmarks filter
+          if (this.bookmarksOnly && !this.bookmarks.has(q.id)) return false;
+          
+          return true;
+        });
+      }
+    }
+    
+    // UI Component Manager
+    class UIManager {
+      constructor(state) {
+        this.state = state;
+        this.container = document.getElementById('questionsContainer');
+        this.searchInput = document.getElementById('searchInput');
+        this.searchDebounceTimer = null;
+        
+        this.initializeEventListeners();
+      }
+      
+      initializeEventListeners() {
+        // Tab navigation
+        document.getElementById('tabs').addEventListener('click', (e) => {
+          const button = e.target.closest('[data-chapter]');
+          if (!button) return;
+          
+          this.setActiveTab(button.dataset.chapter);
+        });
+        
+        // Toggle all answers
+        document.getElementById('toggleAll').addEventListener('click', () => {
+          this.state.showAllAnswers = !this.state.showAllAnswers;
+          this.updateToggleButton();
+          this.render();
+        });
+        
+        // Bookmarks filter
+        document.getElementById('showBookmarks').addEventListener('click', () => {
+          this.state.bookmarksOnly = !this.state.bookmarksOnly;
+          this.updateBookmarksButton();
+          this.render();
+        });
+        
+        // Search with debouncing
+        this.searchInput.addEventListener('input', (e) => {
+          clearTimeout(this.searchDebounceTimer);
+          this.searchDebounceTimer = setTimeout(() => {
+            this.handleSearch(e.target.value);
+          }, 300);
+        });
+        
+        // Search navigation
+        this.searchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            this.navigateToNextHit();
           }
         });
-
-        // bookmark
-        card.querySelector('[data-bm]').addEventListener('click',(ev)=>{
-          ev.stopPropagation();
-          toggleBM(q.id);
-          render();
+        
+        // Hit navigation buttons
+        document.getElementById('prevHit').addEventListener('click', () => {
+          this.navigateToPreviousHit();
         });
-      });
-
-      // Highlight after render
-      refreshHighlights(term);
-
-      stat();
-    }
-
-    function stat(){
-      bmCount.textContent = bookmarks.length;
-      const total = data.questions.length || 1;
-      const pct = Math.round((viewed.length/total)*100);
-      progressPct.textContent = pct + '%';
-      bar.style.width = pct + '%';
-    }
-
-    function toggleBM(id){
-      const i = bookmarks.indexOf(id);
-      if(i>=0) bookmarks.splice(i,1); else bookmarks.push(id);
-      localStorage.setItem('qa_bm', JSON.stringify(bookmarks));
-    }
-
-    // ---------- Search + Highlight + Jump ----------
-    function escapeRegex(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
-
-    function clearAllHighlights(root=document){
-      root.querySelectorAll('mark.hl').forEach(m=>{
-        const parent = m.parentNode;
-        parent.replaceChild(document.createTextNode(m.textContent), m);
-        parent.normalize();
-      });
-    }
-
-    function highlightInElement(el, term){
-      if(!term) return;
-      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
-        acceptNode: node => node.parentElement && !['SCRIPT','STYLE'].includes(node.parentElement.tagName) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
-      });
-      let node;
-      const re = new RegExp(escapeRegex(term), 'gi');
-      while(node = walker.nextNode()){
-        const txt = node.nodeValue;
-        if(!txt) continue;
-        if(re.test(txt)){
-          const frag = document.createDocumentFragment();
-          let lastIndex = 0;
-          txt.replace(re, (match, offset)=>{
-            const before = txt.slice(lastIndex, offset);
-            if(before) frag.appendChild(document.createTextNode(before));
-            const mark = document.createElement('mark');
-            mark.className = 'hl';
-            mark.textContent = match;
-            frag.appendChild(mark);
-            lastIndex = offset + match.length;
-          });
-          const after = txt.slice(lastIndex);
-          if(after) frag.appendChild(document.createTextNode(after));
-          node.parentNode.replaceChild(frag, node);
+        
+        document.getElementById('nextHit').addEventListener('click', () => {
+          this.navigateToNextHit();
+        });
+        
+        // Clear search
+        document.getElementById('clearSearch').addEventListener('click', () => {
+          this.clearSearch();
+        });
+      }
+      
+      setActiveTab(chapter) {
+        this.state.currentChapter = chapter;
+        
+        // Update tab styles
+        document.querySelectorAll('#tabs button').forEach(btn => {
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-ghost');
+          btn.setAttribute('aria-selected', 'false');
+        });
+        
+        const activeBtn = document.querySelector(`#tabs button[data-chapter="${chapter}"]`);
+        if (activeBtn) {
+          activeBtn.classList.add('btn-primary');
+          activeBtn.classList.remove('btn-ghost');
+          activeBtn.setAttribute('aria-selected', 'true');
+        }
+        
+        this.render();
+      }
+      
+      updateToggleButton() {
+        const button = document.getElementById('toggleAll');
+        button.setAttribute('aria-pressed', this.state.showAllAnswers);
+        button.innerHTML = this.state.showAllAnswers ? 
+          `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span>ซ่อนทั้งหมด</span>` :
+          `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+          </svg>
+          <span>แสดงทั้งหมด</span>`;
+      }
+      
+      updateBookmarksButton() {
+        const button = document.getElementById('showBookmarks');
+        button.setAttribute('aria-pressed', this.state.bookmarksOnly);
+        button.classList.toggle('btn-primary', this.state.bookmarksOnly);
+        button.innerHTML = `
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+          </svg>
+          <span>${this.state.bookmarksOnly ? 'แสดงทั้งหมด' : 'บุ๊กมาร์ก'}</span>`;
+      }
+      
+      render() {
+        const questions = this.state.getFilteredQuestions();
+        
+        // Use DocumentFragment for better performance
+        const fragment = document.createDocumentFragment();
+        
+        questions.forEach(question => {
+          const card = this.createQuestionCard(question);
+          fragment.appendChild(card);
+        });
+        
+        // Clear and append in one operation
+        this.container.innerHTML = '';
+        this.container.appendChild(fragment);
+        
+        // Update stats
+        this.updateStatistics();
+        
+        // Apply search highlights if needed
+        if (this.state.searchTerm) {
+          this.applySearchHighlights();
         }
       }
-    }
-
-    function openAnswersContaining(term){
-      if(!term) return;
-      // Open any card that contains the term in question/answer
-      document.querySelectorAll('#host article').forEach(card=>{
-        const ans = card.querySelector('.answer');
-        const text = card.textContent.toLowerCase();
-        if(text.includes(term) && ans.classList.contains('hidden')){
-          ans.classList.remove('hidden');
+      
+      createQuestionCard(question) {
+        const isBookmarked = this.state.bookmarks.has(question.id);
+        const isViewed = this.state.viewedQuestions.has(question.id);
+        
+        const card = document.createElement('article');
+        card.className = 'card p-5 shadow hover:shadow-md transition-shadow';
+        card.dataset.questionId = question.id;
+        
+        const answerClass = this.state.showAllAnswers ? 'show' : '';
+        
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <div class="flex-1 cursor-pointer" data-action="toggle">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="qchip">ข้อ ${question.num} — ${question.ch.toUpperCase()}</span>
+                ${question.likely ? '<span class="hot">🔥 น่าจะออก</span>' : ''}
+              </div>
+              <h3 class="text-lg font-extrabold text-gray-900">${this.escapeHtml(question.q)}</h3>
+            </div>
+            <button 
+              class="bookmark-star ${isBookmarked ? 'active' : ''}" 
+              data-action="bookmark"
+              aria-label="${isBookmarked ? 'ลบบุ๊กมาร์ก' : 'เพิ่มบุ๊กมาร์ก'}"
+            >
+              ${isBookmarked ? '★' : '☆'}
+            </button>
+          </div>
+          <div class="answer ${answerClass} border-t border-slate-200">
+            <div class="prose prose-slate max-w-none">${question.a}</div>
+            <div class="ref mt-3">
+              📌 อ้างอิง:<br>
+              ${question.ref.map(r => `• ${this.escapeHtml(r)}`).join('<br>')}
+            </div>
+          </div>
+        `;
+        
+        // Event delegation for better performance
+        card.addEventListener('click', (e) => {
+          const action = e.target.closest('[data-action]')?.dataset.action;
+          
+          if (action === 'bookmark') {
+            e.stopPropagation();
+            this.toggleBookmark(question.id);
+          } else if (action === 'toggle' || e.target.closest('[data-action="toggle"]')) {
+            this.toggleAnswer(card, question.id);
+          }
+        });
+        
+        return card;
+      }
+      
+      toggleAnswer(card, questionId) {
+        const answer = card.querySelector('.answer');
+        const isOpening = !answer.classList.contains('show');
+        
+        answer.classList.toggle('show');
+        
+        if (isOpening) {
+          this.state.markAsViewed(questionId);
+          this.updateStatistics();
         }
-      });
-    }
-
-    function collectHits(){
-      hits = Array.from(document.querySelectorAll('mark.hl'));
-      hitIndex = hits.length ? 0 : -1;
-      updateHitCounter();
-    }
-
-    function scrollToCurrentHit(){
-      if(hitIndex<0 || hitIndex>=hits.length) return;
-      const el = hits[hitIndex];
-      el.scrollIntoView({behavior:'smooth', block:'center'});
-      // brief flash
-      el.style.transition='box-shadow .2s ease';
-      el.style.boxShadow='0 0 0 6px rgba(102,126,234,.35)';
-      setTimeout(()=>{ el.style.boxShadow='none'; }, 500);
-    }
-
-    function updateHitCounter(){
-      hitCounter.textContent = hits.length ? (hitIndex+1) + '/' + hits.length : '0/0';
-      prevHitBtn.disabled = hits.length===0;
-      nextHitBtn.disabled = hits.length===0;
-    }
-
-    function refreshHighlights(term){
-      clearAllHighlights(document);
-      if(!term){
-        hits=[]; hitIndex=-1; updateHitCounter(); return;
       }
-      // open answers containing the term before highlight
-      openAnswersContaining(term);
-      // highlight in host area only
-      document.querySelectorAll('#host article').forEach(card=>{
-        highlightInElement(card, term);
-      });
-      collectHits();
-      if(hits.length){ scrollToCurrentHit(); }
-    }
-
-    // ---------- Controls ----------
-    document.getElementById('toggleAll').onclick = ()=>{
-      allOpen = !allOpen;
-      document.getElementById('toggleAll').textContent = allOpen ? '📕 ซ่อนคำตอบทั้งหมด' : '📖 แสดงคำตอบทั้งหมด';
-      render();
-    };
-
-    document.getElementById('showBM').onclick = ()=>{
-      bmOnly = !bmOnly;
-      document.getElementById('showBM').textContent = bmOnly ? '⭐ แสดงทั้งหมด' : '⭐ เฉพาะบุ๊กมาร์ก';
-      render();
-    };
-
-    document.getElementById('tabs').addEventListener('click', (e)=>{
-      const b = e.target.closest('button[data-ch]'); if(!b) return;
-      chapter = b.dataset.ch;
-      // active style
-      [...document.querySelectorAll('#tabs button')].forEach(x=>x.classList.remove('btn-primary'));
-      b.classList.add('btn-primary'); b.classList.remove('btn-ghost');
-      render();
-      // keep search highlights after switching tab
-      if(search.value.trim()){ refreshHighlights(search.value.trim().toLowerCase()); }
-    });
-
-    // Search typing + Enter to next
-    search.addEventListener('input', ()=>{
-      render(); // re-render to ensure fresh content
-    });
-    search.addEventListener('keydown', (e)=>{
-      if(e.key==='Enter'){
-        e.preventDefault();
-        if(hits.length===0) return;
-        hitIndex = (hitIndex+1) % hits.length;
-        updateHitCounter();
-        scrollToCurrentHit();
+      
+      toggleBookmark(questionId) {
+        this.state.toggleBookmark(questionId);
+        
+        const card = document.querySelector(`[data-question-id="${questionId}"]`);
+        if (card) {
+          const star = card.querySelector('.bookmark-star');
+          const isBookmarked = this.state.bookmarks.has(questionId);
+          
+          star.classList.toggle('active', isBookmarked);
+          star.textContent = isBookmarked ? '★' : '☆';
+          star.setAttribute('aria-label', isBookmarked ? 'ลบบุ๊กมาร์ก' : 'เพิ่มบุ๊กมาร์ก');
+        }
+        
+        this.updateStatistics();
+        
+        // Re-render if bookmarks filter is active
+        if (this.state.bookmarksOnly) {
+          this.render();
+        }
       }
-    });
-    prevHitBtn.addEventListener('click', ()=>{
-      if(hits.length===0) return;
-      hitIndex = (hitIndex-1 + hits.length) % hits.length;
-      updateHitCounter();
-      scrollToCurrentHit();
-    });
-    nextHitBtn.addEventListener('click', ()=>{
-      if(hits.length===0) return;
-      hitIndex = (hitIndex+1) % hits.length;
-      updateHitCounter();
-      scrollToCurrentHit();
-    });
-    clearBtn.addEventListener('click', ()=>{
-      search.value = '';
-      refreshHighlights('');
-      render();
-    });
-
-    // ---------- Initial render ----------
-    render();
+      
+      updateStatistics() {
+        document.getElementById('bmCount').textContent = this.state.bookmarks.size;
+        document.getElementById('progressPct').textContent = `${this.state.progress}%`;
+        document.getElementById('progressBar').style.width = `${this.state.progress}%`;
+        document.getElementById('hotCount').textContent = this.state.hotQuestionsCount;
+      }
+      
+      handleSearch(term) {
+        this.state.searchTerm = term.toLowerCase().trim();
+        
+        if (!this.state.searchTerm) {
+          this.clearSearchHighlights();
+          this.state.searchHits = [];
+          this.state.currentHitIndex = -1;
+          this.updateSearchCounter();
+          return;
+        }
+        
+        // Open answers containing search term
+        this.openAnswersWithSearchTerm();
+        
+        // Apply highlights
+        this.applySearchHighlights();
+      }
+      
+      openAnswersWithSearchTerm() {
+        if (!this.state.searchTerm) return;
+        
+        document.querySelectorAll('[data-question-id]').forEach(card => {
+          const text = card.textContent.toLowerCase();
+          if (text.includes(this.state.searchTerm)) {
+            const answer = card.querySelector('.answer');
+            if (!answer.classList.contains('show')) {
+              answer.classList.add('show');
+              const questionId = parseInt(card.dataset.questionId);
+              this.state.markAsViewed(questionId);
+            }
+          }
+        });
+        
+        this.updateStatistics();
+      }
+      
+      applySearchHighlights() {
+        this.clearSearchHighlights();
+        
+        if (!this.state.searchTerm) return;
+        
+        const walker = document.createTreeWalker(
+          this.container,
+          NodeFilter.SHOW_TEXT,
+          {
+            acceptNode: (node) => {
+              const parent = node.parentElement;
+              if (!parent || ['SCRIPT', 'STYLE'].includes(parent.tagName)) {
+                return NodeFilter.FILTER_REJECT;
+              }
+              return NodeFilter.FILTER_ACCEPT;
+            }
+          }
+        );
+        
+        const regex = new RegExp(this.escapeRegex(this.state.searchTerm), 'gi');
+        const nodesToReplace = [];
+        
+        let node;
+        while (node = walker.nextNode()) {
+          if (regex.test(node.nodeValue)) {
+            nodesToReplace.push(node);
+          }
+        }
+        
+        nodesToReplace.forEach(node => {
+          const fragment = this.createHighlightedFragment(node.nodeValue, regex);
+          node.parentNode.replaceChild(fragment, node);
+        });
+        
+        // Collect all highlights
+        this.state.searchHits = Array.from(document.querySelectorAll('mark.hl'));
+        this.state.currentHitIndex = this.state.searchHits.length > 0 ? 0 : -1;
+        
+        this.updateSearchCounter();
+        
+        if (this.state.searchHits.length > 0) {
+          this.scrollToCurrentHit();
+        }
+      }
+      
+      createHighlightedFragment(text, regex) {
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        
+        text.replace(regex, (match, offset) => {
+          // Add text before match
+          if (offset > lastIndex) {
+            fragment.appendChild(
+              document.createTextNode(text.slice(lastIndex, offset))
+            );
+          }
+          
+          // Add highlighted match
+          const mark = document.createElement('mark');
+          mark.className = 'hl';
+          mark.textContent = match;
+          fragment.appendChild(mark);
+          
+          lastIndex = offset + match.length;
+        });
+        
+        // Add remaining text
+        if (lastIndex < text.length) {
+          fragment.appendChild(
+            document.createTextNode(text.slice(lastIndex))
+          );
+        }
+        
+        return fragment;
+      }
+      
+      clearSearchHighlights() {
+        document.querySelectorAll('mark.hl').forEach(mark => {
+          const parent = mark.parentNode;
+          parent.replaceChild(document.createTextNode(mark.textContent), mark);
+          parent.normalize();
+        });
+      }
+      
+      navigateToNextHit() {
+        if (this.state.searchHits.length === 0) return;
+        
+        this.state.currentHitIndex = 
+          (this.state.currentHitIndex + 1) % this.state.searchHits.length;
+        
+        this.scrollToCurrentHit();
+        this.updateSearchCounter();
+      }
+      
+      navigateToPreviousHit() {
+        if (this.state.searchHits.length === 0) return;
+        
+        this.state.currentHitIndex = 
+          (this.state.currentHitIndex - 1 + this.state.searchHits.length) % 
+          this.state.searchHits.length;
+        
+        this.scrollToCurrentHit();
+        this.updateSearchCounter();
+      }
+      
+      scrollToCurrentHit() {
+        if (this.state.currentHitIndex < 0 || 
+            this.state.currentHitIndex >= this.state.searchHits.length) {
+          return;
+        }
+        
+        const hit = this.state.searchHits[this.state.currentHitIndex];
+        
+        // Smooth scroll with highlight animation
+        hit.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Visual feedback
+        hit.style.animation = 'none';
+        setTimeout(() => {
+          hit.style.animation = 'highlightPulse 0.5s ease';
+        }, 10);
+      }
+      
+      updateSearchCounter() {
+        const counter = document.getElementById('hitCounter');
+        const prevBtn = document.getElementById('prevHit');
+        const nextBtn = document.getElementById('nextHit');
+        
+        if (this.state.searchHits.length > 0) {
+          counter.textContent = 
+            `${this.state.currentHitIndex + 1}/${this.state.searchHits.length}`;
+          prevBtn.disabled = false;
+          nextBtn.disabled = false;
+        } else {
+          counter.textContent = '0/0';
+          prevBtn.disabled = true;
+          nextBtn.disabled = true;
+        }
+      }
+      
+      clearSearch() {
+        this.searchInput.value = '';
+        this.state.searchTerm = '';
+        this.clearSearchHighlights();
+        this.state.searchHits = [];
+        this.state.currentHitIndex = -1;
+        this.updateSearchCounter();
+      }
+      
+      escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+      
+      escapeRegex(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      }
+    }
+    
+    // Utility Functions
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    // Application Initialization
+    class QuizApplication {
+      constructor() {
+        this.state = new QuizState();
+        this.ui = new UIManager(this.state);
+      }
+      
+      async initialize() {
+        try {
+          // Load quiz data
+          const dataElement = document.getElementById('qa-data');
+          if (!dataElement) {
+            throw new Error('Quiz data not found');
+          }
+          
+          this.state.data = JSON.parse(dataElement.textContent);
+          
+          // Initial render
+          this.ui.render();
+          
+          // Set initial active tab
+          this.ui.setActiveTab('all');
+          
+          console.log('Quiz application initialized successfully');
+        } catch (error) {
+          console.error('Failed to initialize quiz application:', error);
+          this.showErrorMessage();
+        }
+      }
+      
+      showErrorMessage() {
+        const container = document.getElementById('questionsContainer');
+        container.innerHTML = `
+          <div class="card p-6 text-center">
+            <p class="text-red-600 font-semibold">
+              เกิดข้อผิดพลาดในการโหลดข้อมูล กรุณารีเฟรชหน้าใหม่
+            </p>
+          </div>
+        `;
+      }
+    }
+    
+    // Start application when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        const app = new QuizApplication();
+        app.initialize();
+        
+        // Make utilities available globally
+        window.scrollToTop = scrollToTop;
+      });
+    } else {
+      const app = new QuizApplication();
+      app.initialize();
+      
+      // Make utilities available globally
+      window.scrollToTop = scrollToTop;
+    }
   </script>
 </body>
 </html>

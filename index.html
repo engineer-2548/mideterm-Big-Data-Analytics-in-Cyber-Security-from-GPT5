@@ -1,137 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<questions>
-  <!-- โครงสร้างเหมือน fallback XML ใน index.html เพื่อให้ api.php แปลงเป็น JSON ได้ -->
-  <!-- CH1 -->
-  <q id="1" chapter="ch1" likely="true">
-    <question>Data Analytics กับ Data Science แตกต่างกันอย่างไร?</question>
-    <answer><![CDATA[
-      <table class="w-full border border-slate-700 text-sm">
-        <thead><tr class="bg-slate-800">
-          <th class="p-2 border border-slate-700">ประเด็น</th>
-          <th class="p-2 border border-slate-700">Data Analytics</th>
-          <th class="p-2 border border-slate-700">Data Science</th>
-        </tr></thead>
-        <tbody>
-          <tr>
-            <td class="p-2 border border-slate-700"><span class="kw">ขอบเขต</span></td>
-            <td class="p-2 border border-slate-700">วิเคราะห์/สรุป + <span class="kw">Visualization</span></td>
-            <td class="p-2 border border-slate-700">ครอบคลุม <span class="kw">เตรียมข้อมูล</span> ถึง <span class="kw">ML</span></td>
-          </tr>
-          <tr>
-            <td class="p-2 border border-slate-700"><span class="kw">คีย์เวิร์ดจำ</span></td>
-            <td class="p-2 border border-slate-700"><span class="kw">อธิบายสิ่งที่เกิดขึ้น</span></td>
-            <td class="p-2 border border-slate-700"><span class="kw">ทำนาย/สร้างแบบจำลอง</span></td>
-          </tr>
-        </tbody>
-      </table>
-    ]]></answer>
-  </q>
+<!DOCTYPE html>
+<html lang="th" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>แบบฝึกหัดทบทวน • Big Data Analytics in Cybersecurity</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode:'class', theme:{ extend:{ colors:{ brand:{ p:'#667eea', s:'#764ba2'} } } } };
+  </script>
+  <style>
+    :root{--border:#e2e8f0}
+    [data-theme="dark"] :root{--border:#4a5568}
+    body{font-family:'Sarabun',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh}
+    .card{background:rgba(255,255,255,.95)}
+    [data-theme="dark"] .card{background:rgba(45,55,72,.95)}
+    .kw{color:#e11d48;font-weight:800;text-decoration:underline}
+    .qchip{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:999px;padding:.2rem .7rem;font-weight:800;font-size:.8rem}
+    .hot{background:#f6ad55;color:#000;border-radius:999px;padding:.15rem .6rem;margin-left:.4rem;font-weight:800;font-size:.8rem}
+    .ref{font-size:.92rem;color:#94a3b8;border-left:4px solid #667eea;background:rgba(148,163,184,.12)}
+    .table-wrap{overflow-x:auto}
+    table.compare{width:100%;border:1px solid var(--border);border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden}
+    table.compare th,table.compare td{padding:.65rem .8rem;border-bottom:1px solid var(--border);vertical-align:top}
+    table.compare th{background:rgba(148,163,184,.15)}
+    table.compare tr:last-child td{border-bottom:none}
+    @media print{.no-print{display:none !important}.answer{display:block !important}.card{box-shadow:none}}
+  </style>
+</head>
+<body class="text-slate-100">
+  <div class="max-w-6xl mx-auto p-4 md:p-6">
+    <!-- Header -->
+    <header class="card rounded-2xl p-6 shadow-xl">
+      <h1 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white text-center">📚 แบบฝึกหัดทบทวนก่อนสอบกลางภาค</h1>
+      <p class="text-center text-slate-500 dark:text-slate-300">Big Data Analytics in Cybersecurity (Ch1–Ch5)</p>
+      <div class="mt-3 flex flex-wrap gap-2 justify-center">
+        <span class="px-3 py-1 rounded-full border border-slate-300/70 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs">14 คำถาม</span>
+        <span class="px-3 py-1 rounded-full border border-slate-300/70 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs">ตารางเปรียบเทียบ • คีย์เวิร์ดเน้น</span>
+        <span class="px-3 py-1 rounded-full border border-slate-300/70 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs">HTML + Tailwind + JS + JSON</span>
+      </div>
+    </header>
 
-  <q id="2" chapter="ch1">
-    <question>4 ระดับของ Data Analytics คืออะไร อธิบายพร้อมคีย์เวิร์ด</question>
-    <answer><![CDATA[
-      <ul class="list-disc pl-6">
-        <li><b>Descriptive</b> — <span class="kw">“เกิดอะไรขึ้น?”</span></li>
-        <li><b>Diagnostic</b> — <span class="kw">“ทำไมถึงเกิด?”</span></li>
-        <li><b>Predictive</b> — <span class="kw">“จะเกิดอะไร?”</span></li>
-        <li><b>Prescriptive</b> — <span class="kw">“ควรทำอย่างไร?”</span></li>
-      </ul>
-    ]]></answer>
-  </q>
+    <!-- Stats -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-3 my-4">
+      <div class="card rounded-2xl p-4 text-center shadow"><div class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-pink-300">14</div><div class="text-slate-600 dark:text-slate-300 text-sm">คำถามทั้งหมด</div></div>
+      <div class="card rounded-2xl p-4 text-center shadow"><div id="bmCount" class="text-xl font-bold">0</div><div class="text-slate-600 dark:text-slate-300 text-sm">บุ๊กมาร์ก</div></div>
+      <div class="card rounded-2xl p-4 text-center shadow"><div id="progressPct" class="text-xl font-bold">0%</div><div class="text-slate-600 dark:text-slate-300 text-sm">ความคืบหน้า</div></div>
+      <div class="card rounded-2xl p-4 text-center shadow"><div class="text-xl font-bold">คาดออก 8/14</div><div class="text-slate-600 dark:text-slate-300 text-sm">ตามความสำคัญเนื้อหา</div></div>
+    </section>
 
-  <q id="3" chapter="ch1" likely="true">
-    <question>5V ของ Big Data คืออะไร?</question>
-    <answer><![CDATA[
-      <ul class="list-disc pl-6">
-        <li><span class="kw">Volume</span>, <span class="kw">Variety</span>, <span class="kw">Velocity</span>, <span class="kw">Veracity</span>, <span class="kw">Value</span></li>
-      </ul>
-    ]]></answer>
-  </q>
+    <!-- Progress -->
+    <div class="h-1.5 rounded bg-white/50 dark:bg-slate-700/60 overflow-hidden mb-4">
+      <div id="bar" class="h-full bg-gradient-to-r from-brand-p to-brand-s w-0 transition-all"></div>
+    </div>
 
-  <!-- CH2 -->
-  <q id="4" chapter="ch2" likely="true">
-    <question>NIST CSF 2.0 มีฟังก์ชันหลักอะไรบ้าง?</question>
-    <answer><![CDATA[
-      <p><span class="kw">GV-ID-PR-DE-RS-RC</span></p>
-    ]]></answer>
-  </q>
-
-  <q id="5" chapter="ch2">
-    <question>5 ขั้นตอนสร้าง CSF Organizational Profile</question>
-    <answer><![CDATA[
-      <ol class="list-decimal pl-6">
-        <li><span class="kw">Scope</span></li><li><span class="kw">Current</span></li><li><span class="kw">Risk</span></li><li><span class="kw">Target</span></li><li><span class="kw">Gap/Action</span></li>
-      </ol>
-    ]]></answer>
-  </q>
-
-  <q id="6" chapter="ch2" likely="true">
-    <question>อธิบาย 7 ขั้นของ Cyber Kill Chain</question>
-    <answer><![CDATA[
-      <ol class="list-decimal pl-6"><li>Recon</li><li>Weaponization</li><li>Delivery</li><li>Exploitation</li><li>Installation</li><li>C2</li><li>Actions</li></ol>
-    ]]></answer>
-  </q>
-
-  <!-- CH3 -->
-  <q id="7" chapter="ch3" likely="true">
-    <question>InfoSec vs Cybersecurity (ตาราง)</question>
-    <answer><![CDATA[
-      <table class="w-full border border-slate-700 text-sm"><tbody>
-      <tr><td class="p-2 border"><span class="kw">ขอบเขต</span></td><td class="p-2 border">ข้อมูลทุกแบบ</td><td class="p-2 border">ระบบ/เครือข่ายดิจิทัล</td></tr>
-      </tbody></table>
-    ]]></answer>
-  </q>
-
-  <q id="8" chapter="ch3">
-    <question>Deepfake Attack คืออะไร + ตัวอย่าง + แนวทางป้องกัน</question>
-    <answer><![CDATA[
-      <p>สื่อปลอมด้วย AI; ยืนยันตัวตนช่องทางที่สอง</p>
-    ]]></answer>
-  </q>
-
-  <q id="9" chapter="ch3" likely="true">
-    <question>Spyware vs Adware (ตาราง)</question>
-    <answer><![CDATA[
-      <table class="w-full border border-slate-700 text-sm"><tbody>
-      <tr><td class="p-2 border"><span class="kw">Permission</span></td><td class="p-2 border">ไม่มี</td><td class="p-2 border">มักมี</td></tr>
-      </tbody></table>
-    ]]></answer>
-  </q>
-
-  <!-- CH4 -->
-  <q id="10" chapter="ch4" likely="true">
-    <question>Cyber Incident Response Cycle</question>
-    <answer><![CDATA[
-      <p>Prep → Detect/Analyze → Contain/Erad/Recover → Post</p>
-    ]]></answer>
-  </q>
-
-  <q id="11" chapter="ch4" likely="true">
-    <question>Log Management (4)</question>
-    <answer><![CDATA[
-      <p>Generation / Transmission / Storage-Disposal / Analysis</p>
-    ]]></answer>
-  </q>
-
-  <!-- CH5 -->
-  <q id="12" chapter="ch5" likely="true">
-    <question>3 ฟังก์ชัน IPS</question>
-    <answer><![CDATA[
-      <p>หยุด / เปลี่ยนสภาพแวดล้อม / เปลี่ยนเนื้อหา</p>
-    ]]></answer>
-  </q>
-
-  <q id="13" chapter="ch5" likely="true">
-    <question>Detection Methodologies (3)</question>
-    <answer><![CDATA[
-      <p>Signature / Anomaly / Stateful Protocol</p>
-    ]]></answer>
-  </q>
-
-  <q id="14" chapter="ch5" likely="true">
-    <question>องค์ประกอบ IDPS</question>
-    <answer><![CDATA[
-      <p>Sensor/Agent, Management, DB, Console</p>
-    ]]></answer>
-  </q>
-</questions>
+    <!-- Controls -->
+    <section class="card rounded-2xl p-4 flex flex-col md:flex-row gap-3 items-center shadow no-print">
+      <div class="relative w-full">
+        <input id="search" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 px-4 py-2" placeholder="🔍 ค้นหา: CSF, Kill Chain, Log, IPS, 5V, Deepfake ..." />
+        <span class="absolute right-3 top-2.5 text-slate-400">🔍</span>
+      </div>
+      <div class="flex gap-2">
+        <button id="toggleAll" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brand-p to-brand-s text-white">📖 แสดงคำตอบทั้งหมด</button>
+        <button id="showBM" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100">⭐

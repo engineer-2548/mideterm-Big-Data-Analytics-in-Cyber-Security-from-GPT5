@@ -1,81 +1,97 @@
 <!DOCTYPE html>
-<html lang="th" data-theme="light">
+<html lang="th">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>แบบฝึกหัดทบทวน • Big Data Analytics in Cybersecurity</title>
-  <!-- Tailwind CSS CDN -->
+  <!-- TailwindCSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <script>
-    tailwind.config = { darkMode:'class', theme:{ extend:{ colors:{ brand:{ p:'#667eea', s:'#764ba2'} } } } };
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Sarabun','ui-sans-serif','system-ui'] },
+          colors: { brand: { p:'#667eea', s:'#764ba2' } }
+        }
+      }
+    }
   </script>
   <style>
-    :root{--border:#e2e8f0}
-    [data-theme="dark"] :root{--border:#4a5568}
-    body{font-family:'Sarabun',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh}
-    .card{background:rgba(255,255,255,.95)}
-    [data-theme="dark"] .card{background:rgba(45,55,72,.95)}
-    .kw{color:#e11d48;font-weight:800;text-decoration:underline}
+    body{font-family:'Sarabun',system-ui; background:linear-gradient(135deg,#f7f9ff 0%,#eef2ff 60%,#f8f7ff 100%); color:#1f2937}
+    .card{background:#fff;border:1px solid #e5e7eb;border-radius:16px}
     .qchip{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-radius:999px;padding:.2rem .7rem;font-weight:800;font-size:.8rem}
-    .hot{background:#f6ad55;color:#000;border-radius:999px;padding:.15rem .6rem;margin-left:.4rem;font-weight:800;font-size:.8rem}
-    .ref{font-size:.92rem;color:#94a3b8;border-left:4px solid #667eea;background:rgba(148,163,184,.12)}
+    .hot{background:#f6ad55;color:#111827;border-radius:999px;padding:.15rem .6rem;margin-left:.4rem;font-weight:800;font-size:.8rem}
+    .kw{color:#dc2626;font-weight:800;text-decoration:underline}
+    .ref{font-size:.92rem;color:#6b7280;border-left:4px solid #667eea;background:#f3f4f6;padding:.75rem;border-radius:.5rem}
     .table-wrap{overflow-x:auto}
-    table.compare{width:100%;border:1px solid var(--border);border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden}
-    table.compare th,table.compare td{padding:.65rem .8rem;border-bottom:1px solid var(--border);vertical-align:top}
-    table.compare th{background:rgba(148,163,184,.15)}
+    table.compare{width:100%;border:1px solid #e5e7eb;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden}
+    table.compare th,table.compare td{padding:.65rem .8rem;border-bottom:1px solid #e5e7eb;vertical-align:top}
+    table.compare th{background:#f8fafc;font-weight:700}
     table.compare tr:last-child td{border-bottom:none}
-    @media print{.no-print{display:none !important}.answer{display:block !important}.card{box-shadow:none}}
+    mark.hl{background:#fff3a3;padding:0 .2em;border-radius:.25rem}
+    .btn{padding:.6rem 1rem;border-radius:.8rem;border:1px solid #e5e7eb;background:#fff;font-weight:700}
+    .btn-primary{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border:none}
+    .btn-ghost{background:#fff}
+    .pill{padding:.25rem .6rem;border:1px solid #e5e7eb;border-radius:999px;font-size:.8rem;color:#4b5563}
+    @media print{.no-print{display:none!important}.answer{display:block!important}}
   </style>
 </head>
-<body class="text-slate-100">
+<body class="text-slate-800">
   <div class="max-w-6xl mx-auto p-4 md:p-6">
     <!-- Header -->
-    <header class="card rounded-2xl p-6 shadow-xl">
-      <h1 class="text-2xl md:text-3xl font-black text-slate-900 dark:text-white text-center">📚 แบบฝึกหัดทบทวนก่อนสอบกลางภาค</h1>
-      <p class="text-center text-slate-500 dark:text-slate-300">Big Data Analytics in Cybersecurity (Ch1–Ch5)</p>
+    <header class="card p-6 shadow">
+      <h1 class="text-2xl md:text-3xl font-extrabold text-center">📚 แบบฝึกหัดทบทวนก่อนสอบกลางภาค</h1>
+      <p class="text-center text-slate-500">Big Data Analytics in Cybersecurity (Ch1–Ch5)</p>
       <div class="mt-3 flex flex-wrap gap-2 justify-center">
-        <span class="px-3 py-1 rounded-full border border-slate-300/70 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs">14 คำถาม</span>
-        <span class="px-3 py-1 rounded-full border border-slate-300/70 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs">ตารางเปรียบเทียบ • คีย์เวิร์ดเน้น</span>
-        <span class="px-3 py-1 rounded-full border border-slate-300/70 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs">HTML + Tailwind + JS + JSON</span>
+        <span class="pill">14 คำถาม</span>
+        <span class="pill">ตารางเปรียบเทียบ • คีย์เวิร์ดเน้น</span>
+        <span class="pill">HTML + Tailwind + JS + JSON</span>
       </div>
     </header>
 
     <!-- Stats -->
     <section class="grid grid-cols-2 md:grid-cols-4 gap-3 my-4">
-      <div class="card rounded-2xl p-4 text-center shadow"><div class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-pink-300">14</div><div class="text-slate-600 dark:text-slate-300 text-sm">คำถามทั้งหมด</div></div>
-      <div class="card rounded-2xl p-4 text-center shadow"><div id="bmCount" class="text-xl font-bold">0</div><div class="text-slate-600 dark:text-slate-300 text-sm">บุ๊กมาร์ก</div></div>
-      <div class="card rounded-2xl p-4 text-center shadow"><div id="progressPct" class="text-xl font-bold">0%</div><div class="text-slate-600 dark:text-slate-300 text-sm">ความคืบหน้า</div></div>
-      <div class="card rounded-2xl p-4 text-center shadow"><div class="text-xl font-bold"><span id="hotCount">8</span>/14</div><div class="text-slate-600 dark:text-slate-300 text-sm">คาดว่าออก</div></div>
+      <div class="card p-4 text-center shadow"><div class="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-p to-brand-s">14</div><div class="text-slate-600 text-sm">คำถามทั้งหมด</div></div>
+      <div class="card p-4 text-center shadow"><div id="bmCount" class="text-xl font-extrabold">0</div><div class="text-slate-600 text-sm">บุ๊กมาร์ก</div></div>
+      <div class="card p-4 text-center shadow"><div id="progressPct" class="text-xl font-extrabold">0%</div><div class="text-slate-600 text-sm">ความคืบหน้า</div></div>
+      <div class="card p-4 text-center shadow"><div class="text-xl font-extrabold"><span id="hotCount">8</span>/14</div><div class="text-slate-600 text-sm">คาดว่าออก</div></div>
     </section>
 
-    <!-- Progress -->
-    <div class="h-1.5 rounded bg-white/50 dark:bg-slate-700/60 overflow-hidden mb-4">
+    <!-- Progress bar -->
+    <div class="h-1.5 rounded bg-slate-200 overflow-hidden mb-4">
       <div id="bar" class="h-full bg-gradient-to-r from-brand-p to-brand-s w-0 transition-all"></div>
     </div>
 
     <!-- Controls -->
-    <section class="card rounded-2xl p-4 flex flex-col md:flex-row gap-3 items-center shadow no-print">
+    <section class="card p-4 flex flex-col md:flex-row gap-3 items-center shadow no-print">
       <div class="relative w-full">
-        <input id="search" class="w-full rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-100 px-4 py-2" placeholder="🔍 ค้นหา: CSF, Kill Chain, Log, IPS, 5V, Deepfake ..." />
+        <input id="search" class="w-full rounded-xl border border-slate-300 bg-white text-slate-800 px-4 py-2" placeholder="🔍 ค้นหา & กด Enter เพื่อไปยังคำถัดไป (มีปุ่ม ◀ ▶ และ ✖)">
         <span class="absolute right-3 top-2.5 text-slate-400">🔍</span>
       </div>
-      <div class="flex gap-2">
-        <button id="toggleAll" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brand-p to-brand-s text-white">📖 แสดงคำตอบทั้งหมด</button>
-        <button id="showBM" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100">⭐ เฉพาะบุ๊กมาร์ก</button>
-        <button id="theme" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100"><span id="themeIcon">🌙</span></button>
+      <div class="flex items-center gap-2">
+        <button id="prevHit" class="btn" title="ก่อนหน้า">◀</button>
+        <div class="pill" id="hitCounter">0/0</div>
+        <button id="nextHit" class="btn" title="ถัดไป">▶</button>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="clearSearch" class="btn">✖ ล้าง</button>
+        <button id="toggleAll" class="btn btn-primary">📖 แสดงคำตอบทั้งหมด</button>
+        <button id="showBM" class="btn">⭐ เฉพาะบุ๊กมาร์ก</button>
       </div>
     </section>
 
-    <!-- Tabs (มีแท็บ 🔥 ออกบ่อย) -->
+    <!-- Tabs -->
     <nav class="no-print my-3 overflow-auto">
       <div id="tabs" class="inline-flex gap-2">
-        <button data-ch="all" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-800">ทั้งหมด</button>
-        <button data-ch="hot" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">🔥 ออกบ่อย</button>
-        <button data-ch="ch1" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Chapter 1</button>
-        <button data-ch="ch2" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Chapter 2</button>
-        <button data-ch="ch3" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Chapter 3</button>
-        <button data-ch="ch4" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Chapter 4</button>
-        <button data-ch="ch5" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Chapter 5</button>
+        <button data-ch="all" class="btn-ghost btn">ทั้งหมด</button>
+        <button data-ch="hot" class="btn-ghost btn">🔥 ออกบ่อย</button>
+        <button data-ch="ch1" class="btn-ghost btn">Chapter 1</button>
+        <button data-ch="ch2" class="btn-ghost btn">Chapter 2</button>
+        <button data-ch="ch3" class="btn-ghost btn">Chapter 3</button>
+        <button data-ch="ch4" class="btn-ghost btn">Chapter 4</button>
+        <button data-ch="ch5" class="btn-ghost btn">Chapter 5</button>
       </div>
     </nav>
 
@@ -89,131 +105,104 @@
     </div>
   </div>
 
-  <!-- ===== JSON (ไทยเต็มรูปแบบ + อ้างอิงไฟล์/หน้า + ภายนอกเมื่อสไลด์ไม่พอ) ===== -->
+  <!-- ===== JSON (ไทยละเอียด + อ้างอิงไฟล์/หน้า; ภายนอกเมื่อสไลด์ไม่พอ) ===== -->
   <script id="qa-json" type="application/json">
   {
     "questions": [
       {
         "id": 1, "num": 1, "ch": "ch1", "likely": true,
         "q": "Data Analytics กับ Data Science แตกต่างกันอย่างไร?",
-        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>มิติเปรียบเทียบ</th><th>Data Analytics</th><th>Data Science</th></tr></thead><tbody><tr><td><span class='kw'>เป้าหมาย</span></td><td>อธิบาย/สรุป <b class='kw'>สิ่งที่เกิดขึ้น</b> (อดีต–ปัจจุบัน) เพื่อ <b>อินไซต์</b> ช่วยตัดสินใจ</td><td>สร้าง <b class='kw'>แบบจำลอง</b> และระบบอัตโนมัติที่คาดการณ์/เพิ่มประสิทธิภาพ</td></tr><tr><td><span class='kw'>ขอบเขตงาน</span></td><td>รายงาน, Dashboard, KPI, วิเคราะห์แนวโน้ม</td><td>วงจรเต็ม: เก็บ–เตรียม–วิศวกรรมฟีเจอร์–เทรน/วาลิเดตโมเดล–ดีพลอย–ติดตาม (MLOps)</td></tr><tr><td><span class='kw'>ชนิดข้อมูล</span></td><td>ส่วนใหญ่ <b>Structured</b></td><td>ทั้ง <b>Structured / Semi / Unstructured</b> (เช่น log, ข้อความ, รูป)</td></tr><tr><td><span class='kw'>ทักษะ</span></td><td>สถิติพรรณนา, SQL, Data Viz</td><td>สถิติอนุมาน, <b>ML/Deep Learning</b>, Data Engineering, Cloud/CI-CD</td></tr><tr><td><span class='kw'>ตัวอย่างใน Cyber</span></td><td>สรุปจำนวนเหตุแจ้งเตือน/แนวโน้มฟิชชิ่งรายสัปดาห์</td><td>โมเดลตรวจจับ <b class='kw'>Anomaly</b> จาก NetFlow/EDR; จัดประเภทอีเมลฟิชชิ่งอัตโนมัติ</td></tr></tbody></table></div><p><b>คีย์เวิร์ดจำ:</b> <span class='kw'>Analytics = อธิบายอดีต</span> • <span class='kw'>Science = สร้างแบบจำลองเพื่อพยากรณ์/แนะนำ</span></p>",
-        "ref": [
-          "จากไฟล์: Ch1_Introduction to BDA in Cybersecurity.pdf — หน้า 4–6 (Data Science VS. Data Analytics; บทบาท Data Scientist/Analyst)"
-        ]
+        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>มิติเปรียบเทียบ</th><th>Data Analytics</th><th>Data Science</th></tr></thead><tbody><tr><td><span class='kw'>เป้าหมาย</span></td><td>อธิบาย/สรุป <b class='kw'>สิ่งที่เกิดขึ้น</b> เพื่อ <b>อินไซต์</b> สนับสนุนการตัดสินใจ</td><td>พัฒนา <b class='kw'>แบบจำลอง</b> และระบบอัตโนมัติสำหรับ <b>พยากรณ์/ให้คำแนะนำ</b></td></tr><tr><td><span class='kw'>ขอบเขตงาน</span></td><td>รายงาน, Dashboard, KPI, วิเคราะห์แนวโน้ม</td><td>วงจรเต็ม: เก็บ–เตรียม–วิศวกรรมฟีเจอร์–เทรน/วาลิเดต–ดีพลอย–มอนิเตอร์ (<b>MLOps</b>)</td></tr><tr><td><span class='kw'>ข้อมูล</span></td><td>ส่วนใหญ่ <b>Structured</b></td><td><b>Structured/Semi/Unstructured</b> เช่น log, ข้อความ, รูป/เสียง</td></tr><tr><td><span class='kw'>ทักษะ</span></td><td>สถิติพรรณนา, SQL, Visualization</td><td>สถิติอนุมาน, <b class='kw'>ML/Deep Learning</b>, Data Engineering, Cloud</td></tr><tr><td><span class='kw'>ตัวอย่างใน Cyber</span></td><td>สรุปจำนวนเหตุแจ้งเตือนรายวัน, แนวโน้มฟิชชิ่ง</td><td>โมเดล <b class='kw'>Anomaly Detection</b> จาก NetFlow/EDR, จัดประเภทอีเมลฟิชชิ่งอัตโนมัติ</td></tr></tbody></table></div><p><b>คีย์เวิร์ดจำ:</b> <span class='kw'>Analytics = อธิบายอดีต</span> • <span class='kw'>Science = สร้างแบบจำลอง</span></p>",
+        "ref": ["จากไฟล์: Ch1_Introduction to BDA in Cybersecurity.pdf — หน้า 4–6"]
       },
       {
         "id": 2, "num": 2, "ch": "ch1", "likely": false,
         "q": "ประเภทการวิเคราะห์ข้อมูล (Types of Data Analytics) ทั้ง 4 ระดับ",
-        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Descriptive</b> — <span class='kw'>“เกิดอะไรขึ้น?”</span> สรุปภาพอดีต (รายงาน, Dashboard)</li><li><b class='kw'>Diagnostic</b> — <span class='kw'>“ทำไมถึงเกิด?”</span> หา <i>root cause</i> เชิงสาเหตุ (drill-down, correlation)</li><li><b class='kw'>Predictive</b> — <span class='kw'>“จะเกิดอะไรขึ้น?”</span> ใช้สถิติเชิงพยากรณ์/ML คาดการณ์เหตุ</li><li><b class='kw'>Prescriptive</b> — <span class='kw'>“ควรทำอย่างไร?”</span> เสนอทางเลือกที่เหมาะ (optimization, decision automation)</li></ol><p><b>เหตุผลสำคัญ:</b> 2 ระดับแรกเน้นอดีต/เหตุผล ส่วน 2 ระดับหลังเน้น <span class='kw'>อนาคตและการตัดสินใจ</span> — ยิ่งขั้นสูง ยิ่งต้องมี <span class='kw'>ข้อมูลคุณภาพ</span> และบริบทธุรกิจชัดเจน</p>",
-        "ref": [
-          "จากไฟล์: Ch1_Introduction to BDA in Cybersecurity.pdf — หน้า 7 (หัวข้อทั้ง 4)"
-        ]
+        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Descriptive</b> — <span class='kw'>“เกิดอะไรขึ้น?”</span> สรุปอดีตด้วยรายงาน/แดชบอร์ด</li><li><b class='kw'>Diagnostic</b> — <span class='kw'>“ทำไมถึงเกิด?”</span> หา <i>root cause</i> (drill-down/การเชื่อมโยงเหตุ)</li><li><b class='kw'>Predictive</b> — <span class='kw'>“จะเกิดอะไรขึ้น?”</span> แบบจำลองคาดการณ์ความเสี่ยง/ปริมาณเหตุ</li><li><b class='kw'>Prescriptive</b> — <span class='kw'>“ควรทำอย่างไร?”</span> แนะนำการตัดสินใจที่เหมาะภายใต้ข้อจำกัด</li></ol><p><b>เหตุผล:</b> 2 ขั้นแรก = <span class='kw'>เข้าใจอดีต</span> • 2 ขั้นหลัง = <span class='kw'>ขับเคลื่อนอนาคต/การตัดสินใจ</span></p>",
+        "ref": ["จากไฟล์: Ch1_Introduction to BDA in Cybersecurity.pdf — หน้า 7"]
       },
       {
         "id": 3, "num": 3, "ch": "ch1", "likely": true,
-        "q": "คุณลักษณะ Big Data (5V) คืออะไร และทำไมสำคัญกับ Cyber?",
-        "a": "<ul class='list-disc pl-6 space-y-1'><li><b class='kw'>Volume</b> — Log/Telemetry ปริมาณมหาศาล (เช่น SIEM หลาย TB/วัน) → ต้องออกแบบสเกลเก็บ/ค้นหา</li><li><b class='kw'>Velocity</b> — ไหลเข้ารวดเร็ว/ใกล้ real-time → สำคัญต่อ <b class='kw'>การตรวจจับทันที</b></li><li><b class='kw'>Variety</b> — หลากหลายรูปแบบ (syslog, NetFlow, EDR, ticket) → ต้องทำ <i>normalization</i></li><li><b class='kw'>Veracity</b> — ความเชื่อถือ/ความไม่แน่นอน (เวลาไม่ซิงค์, log ขาด) → ต้องมี <b>time sync/validation</b></li><li><b class='kw'>Value</b> — ต้องเปลี่ยนข้อมูลเป็น <b class='kw'>คุณค่าปฏิบัติ</b> เช่น ลด MTTR/ปิดช่องโหว่</li></ul><p><b>คีย์เวิร์ดจำ:</b> ปริมาณ–ความเร็ว–ความหลากหลาย–ความเชื่อถือ–<span class='kw'>คุณค่าที่วัดได้</span></p>",
-        "ref": [
-          "จากไฟล์: Ch1_Introduction to BDA in Cybersecurity.pdf — หน้า 8–10 (จาก 3V → 4V → 5V)"
-        ]
+        "q": "คุณลักษณะ Big Data (5V) คืออะไร และสำคัญต่อ Cyber อย่างไร?",
+        "a": "<ul class='list-disc pl-6 space-y-1'><li><b class='kw'>Volume</b> — ปริมาณมหาศาล (เช่น SIEM หลาย TB/วัน) → ออกแบบสเกลจัดเก็บ/ค้นหา</li><li><b class='kw'>Velocity</b> — ไหลเร็ว/ใกล้ real-time → จำเป็นต่อ <b class='kw'>การตรวจจับทันที</b></li><li><b class='kw'>Variety</b> — หลากหลายรูปแบบ (syslog, NetFlow, EDR, ticket) → ต้อง <i>normalize</i></li><li><b class='kw'>Veracity</b> — ความเชื่อถือได้ (เวลาไม่ซิงค์, log ขาด) → ต้องมี <b>time sync/validation</b></li><li><b class='kw'>Value</b> — เปลี่ยนข้อมูลเป็น <b>ผลลัพธ์ที่วัดได้</b> เช่น ลด MTTR/ปิดช่องโหว่</li></ul>",
+        "ref": ["จากไฟล์: Ch1_Introduction to BDA in Cybersecurity.pdf — หน้า 8–10"]
       },
       {
         "id": 4, "num": 4, "ch": "ch2", "likely": true,
-        "q": "NIST Cybersecurity Framework 2.0 มีฟังก์ชันหลักอะไร และสัมพันธ์กันอย่างไร?",
-        "a": "<p>CSF 2.0 วางเป็นวงจรบริหารความเสี่ยงไซเบอร์ 6 ขั้น:</p><ul class='list-disc pl-6 space-y-1'><li><b class='kw'>Govern (GV)</b> — ธรรมาภิบาล/นโยบาย/บทบาท</li><li><b class='kw'>Identify (ID)</b> — รู้จักสินทรัพย์/บริบท/ความเสี่ยง</li><li><b class='kw'>Protect (PR)</b> — มาตรการเชิงป้องกัน (IAM, Awareness, Data Security)</li><li><b class='kw'>Detect (DE)</b> — เฝ้าระวัง/ตรวจพบเหตุผิดปกติ</li><li><b class='kw'>Respond (RS)</b> — จัดการเหตุ/สื่อสาร/ลดผลกระทบ</li><li><b class='kw'>Recover (RC)</b> — ฟื้นฟูบริการ/เรียนรู้และปรับปรุง</li></ul><p><b>เหตุผล:</b> เริ่มจาก <span class='kw'>GV</span> กำกับวิถีองค์กร → <span class='kw'>ID/PR</span> ลดโอกาสเกิดเหตุ → <span class='kw'>DE/RS</span> ลดผลกระทบเมื่อเกิด → <span class='kw'>RC</span> ฟื้นและยกระดับ</p>",
-        "ref": [
-          "จากไฟล์: Ch2_CybersecurityFramework-2025.pdf — หน้า 12–17"
-        ]
+        "q": "NIST Cybersecurity Framework 2.0 มีฟังก์ชันหลักอะไร และเชื่อมโยงกันอย่างไร?",
+        "a": "<p>6 ฟังก์ชันต่อเนื่องเป็นวงจรบริหารความเสี่ยงไซเบอร์:</p><ul class='list-disc pl-6 space-y-1'><li><b class='kw'>Govern</b> — ธรรมาภิบาล/นโยบาย/บทบาท</li><li><b class='kw'>Identify</b> — รู้จักสินทรัพย์/บริบท/ความเสี่ยง</li><li><b class='kw'>Protect</b> — มาตรการเชิงป้องกัน (IAM, Awareness, Data Security)</li><li><b class='kw'>Detect</b> — เฝ้าระวัง/ตรวจพบเหตุผิดปกติ</li><li><b class='kw'>Respond</b> — จัดการเหตุ/สื่อสาร/ลดผลกระทบ</li><li><b class='kw'>Recover</b> — ฟื้นฟูบริการ/สรุปบทเรียน</li></ul><p><b>ลำดับคิด:</b> <span class='kw'>Govern</span> กำกับทิศ • <span class='kw'>Identify/Protect</span> ลดโอกาส • <span class='kw'>Detect/Respond</span> ลดผลกระทบ • <span class='kw'>Recover</span> ฟื้นและปรับปรุง</p>",
+        "ref": ["จากไฟล์: Ch2_CybersecurityFramework-2025.pdf — หน้า 12–17"]
       },
       {
         "id": 5, "num": 5, "ch": "ch2", "likely": false,
-        "q": "ขั้นตอนสร้าง CSF Organizational Profile (อธิบายเหตุผลแต่ละขั้น)",
-        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Scope</b> — กำหนดขอบเขต (ระบบ/หน่วยงาน/บริการ) เพื่อให้ <b>โฟกัส</b> ทรัพยากรถูกจุด</li><li><b class='kw'>Gather</b> — เก็บข้อมูลสินทรัพย์/ความเสี่ยง/ข้อกำกับ เพื่อ <b>รู้สถานะจริง</b></li><li><b class='kw'>Create</b> — จัดทำ <b>Current</b> & <b>Target Profile</b> ให้มีภาพ <b>ตอนนี้ vs เป้าหมาย</b></li><li><b class='kw'>Analyze gaps & Plan</b> — วิเคราะห์ช่องว่าง แล้ววาง <b>Action plan</b> ตามลำดับความเสี่ยง</li><li><b class='kw'>Implement & Update</b> — ลงมือทำ ติดตาม และวนปรับปรุงโปรไฟล์</li></ol>",
-        "ref": [
-          "จากไฟล์: Ch2_CybersecurityFramework-2025.pdf — หน้า 25–27 (Framework Profiles / Building a Profile)"
-        ]
+        "q": "ขั้นตอนสร้าง CSF Organizational Profile (และเหตุผล)",
+        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Scope</b> — ระบุขอบเขตให้ชัด → ใช้ทรัพยากรถูกจุด</li><li><b class='kw'>Gather</b> — รวบรวมสินทรัพย์/ความเสี่ยง/ข้อกำกับ → รู้สถานะจริง</li><li><b class='kw'>Create</b> — สร้าง <b>Current</b> & <b>Target Profile</b> → มีภาพ <b>ตอนนี้ vs เป้าหมาย</b></li><li><b class='kw'>Analyze gaps & Plan</b> — หา <b>ช่องว่าง</b> แล้วจัด <b>ลำดับการแก้</b> ตามความเสี่ยง</li><li><b class='kw'>Implement & Update</b> — ลงมือ ติดตาม และปรับปรุงเป็นรอบ</li></ol>",
+        "ref": ["จากไฟล์: Ch2_CybersecurityFramework-2025.pdf — หน้า 25–27"]
       },
       {
         "id": 6, "num": 6, "ch": "ch2", "likely": true,
-        "q": "อธิบาย Cyber Kill Chain (เหตุผลและตัวอย่างการสกัดกั้นแต่ละช่วง)",
-        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Reconnaissance</b> — เก็บข้อมูลเป้าหมาย → <i>สกัด:</i> ลดการเปิดเผย/OSINT Hygiene</li><li><b class='kw'>Weaponization</b> — ประกอบช่องโหว่กับเพย์โหลด → <i>สกัด:</i> Patch/Hardening</li><li><b class='kw'>Delivery</b> — ส่งเพย์โหลด (Phishing/USB/Drive-by) → <i>สกัด:</i> Email/Web Security</li><li><b class='kw'>Exploitation</b> — ใช้ช่องโหว่ให้โค้ดรัน → <i>สกัด:</i> EDR/Exploit Mitigation</li><li><b class='kw'>Installation</b> — ติดตั้งมัลแวร์/คงอยู่ → <i>สกัด:</i> Application Control</li><li><b class='kw'>Command & Control</b> — เชื่อม C2 → <i>สกัด:</i> Egress Filtering/DNS Security</li><li><b class='kw'>Actions on Objectives</b> — ขโมย/ทำลาย/เรียกค่าไถ่ → <i>สกัด:</i> DLP/Backup-DR</li></ol><p><b>แนวคิดหลัก:</b> <span class='kw'>ตัดโซ่ได้ทุกจุด</span> — หยุดเร็ว ลดเสียหายมาก</p>",
-        "ref": [
-          "จากไฟล์: Ch2_CybersecurityFramework-2025.pdf — หน้า 39–45 (Recon→Actions on Objectives)"
-        ]
+        "q": "อธิบาย Cyber Kill Chain พร้อมวิธีสกัดกั้นในแต่ละช่วง",
+        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Reconnaissance</b> — เก็บข้อมูลเป้าหมาย → <i>สกัด:</i> ลดการเปิดเผย, ควบคุม OSINT</li><li><b class='kw'>Weaponization</b> — ประกอบช่องโหว่กับเพย์โหลด → <i>สกัด:</i> Patch/Hardening</li><li><b class='kw'>Delivery</b> — ส่งเพย์โหลด (Phishing/USB/Drive-by) → <i>สกัด:</i> Email/Web Security, Sandbox</li><li><b class='kw'>Exploitation</b> — ใช้ช่องโหว่ให้โค้ดรัน → <i>สกัด:</i> EDR, Exploit Mitigation</li><li><b class='kw'>Installation</b> — ติดตั้งมัลแวร์/คงอยู่ → <i>สกัด:</i> Application Control</li><li><b class='kw'>Command & Control</b> — เชื่อม C2 → <i>สกัด:</i> Egress filtering, DNS Security</li><li><b class='kw'>Actions on Objectives</b> — ขโมย/ทำลาย/เรียกค่าไถ่ → <i>สกัด:</i> DLP, Backup/DR, Network Segmentation</li></ol><p><b>แนวคิด:</b> <span class='kw'>ตัดโซ่ได้ทุกจุด</span> — หยุดเร็ว ลดเสียหาย</p>",
+        "ref": ["จากไฟล์: Ch2_CybersecurityFramework-2025.pdf — หน้า 39–45"]
       },
       {
         "id": 7, "num": 7, "ch": "ch3", "likely": false,
-        "q": "เปรียบเทียบ Information Security กับ Cybersecurity (ให้เหตุผล)",
-        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>หัวข้อ</th><th>Information Security</th><th>Cybersecurity</th></tr></thead><tbody><tr><td><span class='kw'>ขอบเขต</span></td><td>ปกป้อง <b>สารสนเทศทุกสื่อ</b> (กระดาษ/ดิจิทัล)</td><td>ปกป้อง <b>ทรัพย์สินดิจิทัล</b> (ระบบ/เครือข่าย/อุปกรณ์)</td></tr><tr><td><span class='kw'>หลักการ</span></td><td><b class='kw'>CIA Triad</b> เป็นฐาน</td><td>ประยุกต์ CIA กับ <b>ภัยไซเบอร์</b> (มัลแวร์/บุกรุก/ฟิชชิ่ง)</td></tr><tr><td><span class='kw'>ตัวอย่าง</span></td><td>นโยบายเอกสาร/ห้องเก็บ/การทำลายเอกสาร</td><td>Firewall/IDS/IPS/EDR, SIEM, การตอบสนองเหตุ</td></tr></tbody></table></div><p><b>สรุป:</b> <span class='kw'>InfoSec ⊃ Cybersecurity</span> (ไซเบอร์คือส่วนย่อยที่เน้นดิจิทัล)</p>",
-        "ref": [
-          "จากไฟล์: Ch3_Threat - Risks and Awareness-2025.pdf — หน้า 4–8 (นิยาม + หลัก CIA)"
-        ]
+        "q": "เปรียบเทียบ Information Security กับ Cybersecurity",
+        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>หัวข้อ</th><th>Information Security</th><th>Cybersecurity</th></tr></thead><tbody><tr><td><span class='kw'>ขอบเขต</span></td><td>ปกป้อง <b>สารสนเทศทุกสื่อ</b> (กระดาษ/ดิจิทัล)</td><td>ปกป้อง <b>ทรัพย์สินดิจิทัล</b> (ระบบ/เครือข่าย/อุปกรณ์)</td></tr><tr><td><span class='kw'>หลักการ</span></td><td><b class='kw'>CIA Triad</b> เป็นฐาน</td><td>ประยุกต์ CIA กับ <b>ภัยไซเบอร์</b> (มัลแวร์/บุกรุก/ฟิชชิ่ง)</td></tr><tr><td><span class='kw'>ตัวอย่าง</span></td><td>นโยบายเอกสาร, ห้องเก็บ, การทำลายเอกสาร</td><td>FW/IDS/IPS/EDR, SIEM, Incident Response</td></tr></tbody></table></div><p><b>สรุป:</b> <span class='kw'>InfoSec ⊃ Cybersecurity</span> (ไซเบอร์คือส่วนย่อย)</p>",
+        "ref": ["จากไฟล์: Ch3_Threat - Risks and Awareness-2025.pdf — หน้า 4–8"]
       },
       {
         "id": 8, "num": 8, "ch": "ch3", "likely": false,
-        "q": "Deepfake Attack คืออะไร ตัวอย่าง และแนวทางป้องกัน (สไลด์ไม่มีรายละเอียด)",
-        "a": "<p><b class='kw'>Deepfake</b> คือสื่อภาพ/เสียง/วิดีโอที่สร้าง/ดัดแปลงด้วย AI ให้เหมือนจริงเพื่อ <b class='kw'>หลอกลวง</b>.</p><ul class='list-disc pl-6 space-y-1'><li><b>ตัวอย่าง:</b> ปลอมเสียงผู้บริหารสั่งโอนเงิน; วิดีโอปลอมโปรโมตลงทุน</li><li><b>สัญญาณผิดปกติ:</b> ปากไม่ซิงค์/กะพริบตาแปลก/แสงเงาผิด</li><li><b>แนวป้องกัน:</b> <span class='kw'>ยืนยันตัวตนช่องทางที่สอง</span> (โทรกลับ/วิดีโอคอลสด), กระบวนการอนุมัติหลายชั้น, อบรมพนักงาน, ใช้เครื่องมือช่วยตรวจ</li></ul><p><b>คีย์เวิร์ดจำ:</b> <span class='kw'>ยืนยันหลายปัจจัย</span> • <span class='kw'>อย่าเชื่อคำขอเร่งด่วนโดยไร้การตรวจสอบ</span></p>",
-        "ref": [
-          "จากไฟล์: (หัวข้อนี้ในสไลด์ไม่มีเนื้อหาเฉพาะ)",
-          "แหล่งภายนอก: NSA/FBI/CISA — แนวทางรับมือดีพ์เฟก (2023); NCSC-UK — คำแนะนำองค์กร (2024–2025)"
-        ]
+        "q": "Deepfake Attack คืออะไร ตัวอย่าง และแนวทางป้องกัน",
+        "a": "<p><b class='kw'>Deepfake</b> = สื่อภาพ/เสียง/วิดีโอที่สร้างด้วย AI เพื่อ <b class='kw'>หลอกลวง</b>.</p><ul class='list-disc pl-6 space-y-1'><li><b>ตัวอย่างจริง:</b> ปลอมเสียงผู้บริหารสั่งโอนเงิน; วิดีโอปลอมโปรโมตลงทุน</li><li><b>สัญญาณผิดปกติ:</b> ปากไม่ซิงค์, กะพริบตา/แสงเงาผิดธรรมชาติ</li><li><b>แนวป้องกัน:</b> <span class='kw'>ยืนยันตัวตนช่องทางที่สอง</span>, กระบวนการอนุมัติหลายชั้น, อบรมพนักงาน, ใช้เครื่องมือช่วยตรวจ</li></ul><p><b>คีย์เวิร์ด:</b> <span class='kw'>อย่าเชื่อคำขอเร่งด่วนโดยไร้การตรวจสอบ</span></p>",
+        "ref": ["จากไฟล์: (สไลด์ไม่มีหัวข้อเฉพาะเรื่องนี้ — จึงอ้างอิงแนวปฏิบัติทั่วไป)"]
       },
       {
         "id": 9, "num": 9, "ch": "ch3", "likely": false,
         "q": "Spyware กับ Adware ต่างกันอย่างไร (ตาราง + เหตุผล)",
-        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>หัวข้อ</th><th>Spyware</th><th>Adware</th></tr></thead><tbody><tr><td><span class='kw'>การยินยอม</span></td><td><b class='kw'>ไม่มี</b> — ทำงานแอบแฝง</td><td><b class='kw'>มักมี</b> — ติดมากับฟรีแวร์/เงื่อนไขใช้งาน</td></tr><tr><td><span class='kw'>พฤติกรรม</span></td><td>สอดแนม/ขโมยข้อมูล</td><td>ยิงโฆษณา/ติดตามพฤติกรรมเพื่อโฆษณา</td></tr><tr><td><span class='kw'>ผลกระทบ</span></td><td>รั่วไหลข้อมูลส่วนตัว/การเงิน</td><td>รำคาญ/ช้า/เสี่ยงมัลแวร์</td></tr><tr><td><span class='kw'>ป้องกัน</span></td><td>EDR/Anti-spyware, จำกัดสิทธิ์ติดตั้ง</td><td>ติดตั้งแบบ custom, ระวัง adware bundling</td></tr></tbody></table></div><p><b>ต่างหลัก:</b> <span class='kw'>“ความยินยอม”</span> คือเส้นแบ่งสำคัญ</p>",
-        "ref": [
-          "จากไฟล์: Ch3_Threat - Risks and Awareness-2025.pdf — หน้า 34–35"
-        ]
+        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>หัวข้อ</th><th>Spyware</th><th>Adware</th></tr></thead><tbody><tr><td><span class='kw'>การยินยอม</span></td><td><b class='kw'>ไม่มี</b> — ทำงานแอบแฝง</td><td><b class='kw'>มักมี</b> — พ่วงฟรีแวร์/เงื่อนไขใช้งาน</td></tr><tr><td><span class='kw'>พฤติกรรม</span></td><td>สอดแนม/ขโมยข้อมูล</td><td>ยิงโฆษณา/ติดตามเพื่อโฆษณา</td></tr><tr><td><span class='kw'>ผลกระทบ</span></td><td>ข้อมูลส่วนตัว/การเงินรั่วไหล</td><td>รำคาญ/เครื่องช้า/เพิ่มความเสี่ยง</td></tr><tr><td><span class='kw'>ป้องกัน</span></td><td>EDR/Anti-spyware, จำกัดสิทธิ์ติดตั้ง</td><td>ติดตั้งแบบ custom, ระวัง adware bundling</td></tr></tbody></table></div><p><b>ต่างหลัก:</b> <span class='kw'>“ความยินยอม”</span> คือเส้นแบ่งสำคัญ</p>",
+        "ref": ["จากไฟล์: Ch3_Threat - Risks and Awareness-2025.pdf — หน้า 34–35"]
       },
       {
         "id": 10, "num": 10, "ch": "ch4", "likely": true,
         "q": "วงจรการตอบสนองเหตุการณ์ (Cyber Incident Response Cycle) และเหตุผล",
-        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Preparation</b> — ตั้งนโยบาย/บทบาท/Playbook/ช่องทางสื่อสารสำรอง/ซ้อม tabletop → <b>ลดความสับสน</b> ตอนเกิดเหตุ</li><li><b class='kw'>Detection & Analysis</b> — เฝ้าระวัง, ยืนยันเหตุ (triage), ประเมินผลกระทบ/ขอบเขต → <b>ตัดสินใจเร็ว</b></li><li><b class='kw'>Containment, Eradication & Recovery</b> — กักกัน (isolate), เก็บหลักฐาน, กำจัดสาเหตุ, กู้คืนและ <b>ตรวจความพร้อม</b> ก่อนเปิดใช้</li><li><b class='kw'>Post-incident Activity</b> — รายงานสรุป, <span class='kw'>Lessons Learned</span>, ปรับปรุงกระบวนการ/คอนฟิก/ฝึกอบรม</li></ol><p><b>ตัวชี้วัด:</b> <span class='kw'>MTTD</span>, <span class='kw'>MTTR</span> ลดลง = กระบวนการดีขึ้น</p>",
-        "ref": [
-          "จากไฟล์: Ch4_Incident Management and Cyber Resilience Framework _ Log.pdf — หน้า 15–18 (Incident Handling)"
-        ]
+        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Preparation</b> — นโยบาย/บทบาท/Playbook/ช่องทางสื่อสารสำรอง/ซ้อม tabletop → <b>ลดความสับสน</b> ตอนเกิดเหตุ</li><li><b class='kw'>Detection & Analysis</b> — เฝ้าระวัง, ยืนยันเหตุ (triage), ประเมินผลกระทบ/ขอบเขต → <b>ตัดสินใจเร็ว</b></li><li><b class='kw'>Containment, Eradication & Recovery</b> — กักกัน, เก็บหลักฐาน, กำจัดสาเหตุ, กู้คืนและ <b>ตรวจความพร้อม</b> ก่อนเปิดใช้</li><li><b class='kw'>Post-incident Activity</b> — รายงานสรุป, <span class='kw'>Lessons Learned</span>, ปรับกระบวนการ/คอนฟิก/ฝึกอบรม</li></ol><p><b>ตัวชี้วัด:</b> ลด <span class='kw'>MTTD</span> และ <span class='kw'>MTTR</span> = กระบวนการดีขึ้น</p>",
+        "ref": ["จากไฟล์: Ch4_Incident Management and Cyber Resilience Framework _ Log.pdf — หน้า 15–18"]
       },
       {
         "id": 11, "num": 11, "ch": "ch4", "likely": true,
         "q": "องค์ประกอบ Log Management (และเหตุผลว่าทำไมต้องมี)",
-        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Log Generation</b> — ระบุแหล่ง/รูปแบบที่จะบันทึก → <b>เก็บสิ่งที่มีคุณค่า</b></li><li><b class='kw'>Log Transmission</b> — ส่งแบบปลอดภัย/ทนทานไปศูนย์รวม (SIEM) → <b>ไม่สูญหาย/ไม่ถูกแก้ไข</b></li><li><b class='kw'>Log Storage & Disposal</b> — นโยบายเก็บรักษา/เข้ารหัส/เชื่อถือเวลา (NTP)/ทำลายเมื่อครบกำหนด → <b>สอดคล้องกำกับ</b></li><li><b class='kw'>Log Analysis</b> — สิทธิ์เข้าถึง/ความถี่ตรวจ/กฎตรวจจับ/แจ้งเตือน → <b>ตรวจพบเหตุเร็ว</b></li></ol>",
-        "ref": [
-          "จากไฟล์: Ch4_Incident Management and Cyber Resilience Framework _ Log.pdf — หน้า 46 (หัวข้อย่อยครบ 4 ส่วน)"
-        ]
+        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Log Generation</b> — ระบุแหล่ง/รูปแบบที่จะบันทึก → <b>เก็บสิ่งที่มีคุณค่า</b></li><li><b class='kw'>Log Transmission</b> — ส่งแบบปลอดภัย/ทนทานไปศูนย์รวม (SIEM) → <b>ไม่สูญหาย/ไม่ถูกแก้ไข</b></li><li><b class='kw'>Log Storage & Disposal</b> — นโยบายเก็บรักษา/เข้ารหัส/เชื่อถือเวลา (NTP)/ทำลายเมื่อครบกำหนด → <b>สอดคล้องกำกับ</b></li><li><b class='kw'>Log Analysis</b> — สิทธิ์เข้าถึง/ความถี่ตรวจ/กฎตรวจจับ/แจ้งเตือน → <b>ตรวจพบเหตุเร็ว</b></li></ol><p><b>เหตุผลใหญ่:</b> log = <span class='kw'>หลักฐาน</span> + แหล่ง <span class='kw'>Detection/Forensic</span></p>",
+        "ref": ["จากไฟล์: Ch4_Incident Management and Cyber Resilience Framework _ Log.pdf — หน้า 46"]
       },
       {
         "id": 12, "num": 12, "ch": "ch5", "likely": false,
         "q": "3 ฟังก์ชันหลักของ IPS พร้อมตัวอย่างและเหตุผล",
-        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Stops the attack</b> — บล็อก/ยุติเชสชันทันที → <b>ลดความเสียหายทันที</b></li><li><b class='kw'>Changes the security environment</b> — ปรับกฎ Firewall/ปิดพอร์ตอัตโนมัติ → <b>ลดการโจมตีซ้ำ</b></li><li><b class='kw'>Changes the attack's content</b> — ตัด/ลบส่วนอันตรายในทราฟฟิก (เช่น ไฟล์แนบ) → <b>ลด payload อันตราย</b></li></ol><p><b>ตัวอย่าง:</b> ตรวจพบ exploit จาก IP X → IPS บล็อก IP + สั่ง FW อัปเดตกฎ + ตัด session + แจ้งเตือน SOC</p>",
-        "ref": [
-          "จากไฟล์: Ch5_Intrusion Detection and Prevention Systems-2025.pdf — หน้า 6–8"
-        ]
+        "a": "<ol class='list-decimal pl-6 space-y-1'><li><b class='kw'>Stops the attack</b> — บล็อก/ยุติเชสชันทันที → <b>ลดความเสียหายทันที</b></li><li><b class='kw'>Changes the security environment</b> — อัปเดตกฎ Firewall/ปิดพอร์ตอัตโนมัติ → <b>ป้องกันการโจมตีซ้ำ</b></li><li><b class='kw'>Changes the attack's content</b> — ตัด/ลบ <b>payload อันตราย</b> (เช่น ไฟล์แนบมัลแวร์)</li></ol><p><b>ตัวอย่าง:</b> พบ exploit จาก IP X → IPS บล็อก IP + สั่ง FW อัปเดตกฎ + ตัด session + แจ้ง SOC</p>",
+        "ref": ["จากไฟล์: Ch5_Intrusion Detection and Prevention Systems-2025.pdf — หน้า 6–8"]
       },
       {
         "id": 13, "num": 13, "ch": "ch5", "likely": true,
-        "q": "Detection Methodologies 3 แบบ (เปรียบเทียบจุดเด่น/จำกัด + ข้อแนะนำใช้งาน)",
-        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>วิธี</th><th>หลักคิด</th><th>จุดเด่น</th><th>ข้อจำกัด</th></tr></thead><tbody><tr><td><b class='kw'>Signature-based</b></td><td>เทียบกับ <i>signature</i> ของภัยที่รู้จัก</td><td>เร็ว/แม่นกับภัยเดิม</td><td>พลาด <b class='kw'>Zero-day</b>/รูปแบบดัดแปลง</td></tr><tr><td><b class='kw'>Anomaly-based</b></td><td>เทียบกับ <span class='kw'>พฤติกรรมปกติ</span> (สถิติ/ML)</td><td>จับภัยใหม่/ผิดปกติได้</td><td><b class='kw'>False Positive</b> สูงถ้า baseline ไม่เสถียร</td></tr><tr><td><b class='kw'>Stateful Protocol Analysis</b></td><td>ตรวจตามสเปกโปรโตคอล + สถานะการสื่อสาร</td><td>ดีมากกับการละเมิดโปรโตคอล</td><td>ใช้ทรัพยากรมาก/พลาดภัยที่เลียนแบบทราฟฟิกปกติ</td></tr></tbody></table></div><p><b>ข้อแนะนำ:</b> ใช้ <span class='kw'>ผสมหลายวิธี</span>, อัปเดต signature สม่ำเสมอ, และรีเทรนโมเดลตาม <span class='kw'>data drift</span></p>",
+        "q": "Detection Methodologies 3 แบบ (จุดเด่น/ข้อจำกัด + ข้อแนะนำ)",
+        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>วิธี</th><th>หลักคิด</th><th>เด่น</th><th>จำกัด</th></tr></thead><tbody><tr><td><b class='kw'>Signature-based</b></td><td>เทียบกับ <i>signature</i> ของภัยที่รู้จัก</td><td>เร็ว/แม่นกับภัยเดิม</td><td>พลาด <b class='kw'>Zero-day</b> หรือรูปแบบดัดแปลง</td></tr><tr><td><b class='kw'>Anomaly-based</b></td><td>เทียบกับ <span class='kw'>พฤติกรรมปกติ</span> (สถิติ/ML)</td><td>จับภัยใหม่/ผิดปกติได้</td><td><b class='kw'>False Positive</b> สูงเมื่อ baseline เปลี่ยน</td></tr><tr><td><b class='kw'>Stateful Protocol Analysis</b></td><td>ตรวจตามสเปกโปรโตคอล + สถานะการสื่อสาร</td><td>ดีมากกับการละเมิดโปรโตคอล</td><td>ใช้ทรัพยากรมาก/พลาดภัยที่เลียนแบบทราฟฟิกปกติ</td></tr></tbody></table></div><p><b>แนะนำใช้งาน:</b> <span class='kw'>ผสานหลายวิธี</span>, อัปเดต signature, รีเทรนโมเดลตาม <span class='kw'>data drift</span></p>",
         "ref": [
-          "จากไฟล์: Ch5_Intrusion Detection and Prevention Systems-2025.pdf — หน้า 11–20 (Signature 11–13, Anomaly 14–18, Stateful 18–20)",
-          "ไฟล์บทความ: 2020-Cybersecurity data science - an overview from machine learning perspective.pdf — หน้า 6–11, 15–18 (แนว ML/Anomaly/IDS)"
+          "จากไฟล์: Ch5_Intrusion Detection and Prevention Systems-2025.pdf — หน้า 11–20",
+          "ไฟล์บทความ: 2020-Cybersecurity data science - an overview from machine learning perspective.pdf — หน้า 6–11, 15–18"
         ]
       },
       {
         "id": 14, "num": 14, "ch": "ch5", "likely": true,
         "q": "องค์ประกอบของ IDPS (โครงสร้างและเหตุผลการมีแต่ละส่วน)",
-        "a": "<ul class='list-disc pl-6 space-y-1'><li><b class='kw'>Sensor/Agent</b> — NIDS (เครือข่าย) / HIDS (โฮสต์) เก็บเหตุการณ์/แพ็กเก็ตที่จุดเกิด</li><li><b class='kw'>Management Server</b> — รวมเหตุการณ์/ทำ <i>correlation</i>/บังคับนโยบายตอบสนอง</li><li><b class='kw'>Database Server</b> — เก็บข้อมูลเพื่อค้น/วิเคราะห์ย้อนหลัง/Forensic</li><li><b class='kw'>Console</b> — หน้าจอสำหรับมอนิเตอร์/วิเคราะห์/ตั้งค่า/รายงาน</li></ul><p><b>การไหลข้อมูล:</b> Sensor → Management → Database → Console (แจ้งเตือน/สั่งการ) — แยกบทบาทเพื่อ <span class='kw'>สเกล/ความทนทาน/ความปลอดภัย</span></p>",
-        "ref": [
-          "จากไฟล์: Ch5_Intrusion Detection and Prevention Systems-2025.pdf — หน้า 21–24 (IDPS Components)"
-        ]
+        "a": "<ul class='list-disc pl-6 space-y-1'><li><b class='kw'>Sensor/Agent</b> — NIDS/HIDS เก็บเหตุการณ์/แพ็กเก็ตที่จุดเกิด</li><li><b class='kw'>Management Server</b> — รวมเหตุการณ์, <i>correlation</i>, บังคับนโยบายตอบสนอง</li><li><b class='kw'>Database Server</b> — จัดเก็บเพื่อค้น/วิเคราะห์ย้อนหลัง/Forensic</li><li><b class='kw'>Console</b> — หน้าจอสำหรับมอนิเตอร์/วิเคราะห์/ตั้งค่า/รายงาน</li></ul><p><b>การไหลข้อมูล:</b> Sensor → Management → Database → Console (แจ้งเตือน/สั่งการ) — แยกบทบาทเพื่อ <span class='kw'>สเกล/ทนทาน/ปลอดภัย</span></p>",
+        "ref": ["จากไฟล์: Ch5_Intrusion Detection and Prevention Systems-2025.pdf — หน้า 21–24"]
       }
     ]
   }
   </script>
 
-  <!-- ===== App JS (แท็บ 🔥 ออกบ่อย + ค้นหา + บุ๊กมาร์ก + โหมดมืด) ===== -->
+  <!-- ===== App JS (ค้นหาแบบไฮไลต์ + กระโดดไปยังคำ; บุ๊กมาร์ก; แท็บ 🔥) ===== -->
   <script>
-    // State
+    // ---------- State ----------
     let data = JSON.parse(document.getElementById('qa-json').textContent);
     let bookmarks = JSON.parse(localStorage.getItem('qa_bm') || '[]');
     let viewed = JSON.parse(localStorage.getItem('qa_viewed') || '[]');
@@ -225,51 +214,71 @@
     const progressPct = document.getElementById('progressPct');
     const bar = document.getElementById('bar');
     const hotCountEl = document.getElementById('hotCount');
+    const prevHitBtn = document.getElementById('prevHit');
+    const nextHitBtn = document.getElementById('nextHit');
+    const clearBtn = document.getElementById('clearSearch');
+    const hitCounter = document.getElementById('hitCounter');
 
-    // จำนวนข้อ likely
     hotCountEl.textContent = data.questions.filter(q=>q.likely).length;
 
+    // For search highlighting & navigation
+    let hits = [];     // array of <mark> elements
+    let hitIndex = -1; // current index in hits
+
+    // ---------- Render ----------
     function render(){
       host.innerHTML = '';
-      const term = (search.value||'').toLowerCase();
+      const term = (search.value || '').trim().toLowerCase();
 
       data.questions.forEach((q) => {
         const inHot = q.likely;
         const inCh = (chapter==='all' || (chapter==='hot' && inHot) || q.ch===chapter);
         const isBM = bookmarks.includes(q.id);
-        const text = (q.q + ' ' + q.a).toLowerCase();
-        const match = text.includes(term);
-        if(!inCh || (bmOnly && !isBM) || !match) return;
+
+        // We'll not filter by term here; we show all in chapter/hot/bmOnly, but highlight inside.
+        if(!inCh || (bmOnly && !isBM)) return;
 
         const card = document.createElement('article');
-        card.className = 'card rounded-2xl p-5 shadow';
+        card.className = 'card p-5 shadow';
         card.innerHTML = `
           <div class="flex justify-between items-start cursor-pointer" data-click="toggle">
             <div>
               <span class="qchip">ข้อ ${q.num} — ${q.ch.toUpperCase()}</span>
               <span class="${q.likely ? 'hot' : 'hidden'}">🔥 น่าจะออก</span>
-              <h3 class="mt-2 text-lg font-bold text-slate-900 dark:text-white">${q.q}</h3>
+              <h3 class="mt-2 text-lg font-extrabold">${q.q}</h3>
             </div>
-            <button class="text-2xl ${isBM?'text-amber-400':''}" data-bm="1">${isBM?'★':'☆'}</button>
+            <button class="text-2xl ${isBM?'text-amber-500':''}" data-bm="1" title="บุ๊กมาร์ก">${isBM?'★':'☆'}</button>
           </div>
-          <div class="answer ${allOpen?'':'hidden'} mt-3 border-t border-slate-200 dark:border-slate-700 pt-3">
-            <div class="prose prose-slate max-w-none text-slate-800 dark:text-slate-100">${q.a}</div>
-            <div class="ref mt-3 p-3 rounded">${q.ref.map(r=>`• ${r}`).join('<br/>')}</div>
+          <div class="answer ${allOpen?'':'hidden'} mt-3 border-t border-slate-200 pt-3">
+            <div class="prose prose-slate max-w-none">${q.a}</div>
+            <div class="ref mt-3 rounded">📌 อ้างอิง:<br>${q.ref.map(r=>`• ${r}`).join('<br/>')}</div>
           </div>
         `;
         host.appendChild(card);
 
-        card.querySelector('[data-click="toggle"]').addEventListener('click', (ev)=>{
+        // toggle open/close
+        card.querySelector('[data-click="toggle"]').addEventListener('click',(ev)=>{
           if(ev.target.closest('[data-bm]')) return;
-          card.querySelector('.answer').classList.toggle('hidden');
-          if(!viewed.includes(q.id)){ viewed.push(q.id); localStorage.setItem('qa_viewed', JSON.stringify(viewed)); stat(); }
+          const ans = card.querySelector('.answer');
+          const wasHidden = ans.classList.contains('hidden');
+          ans.classList.toggle('hidden');
+          if(wasHidden && !viewed.includes(q.id)){
+            viewed.push(q.id);
+            localStorage.setItem('qa_viewed', JSON.stringify(viewed));
+            stat();
+          }
         });
-        card.querySelector('[data-bm]').addEventListener('click', (ev)=>{
+
+        // bookmark
+        card.querySelector('[data-bm]').addEventListener('click',(ev)=>{
           ev.stopPropagation();
           toggleBM(q.id);
           render();
         });
       });
+
+      // Highlight after render
+      refreshHighlights(term);
 
       stat();
     }
@@ -281,37 +290,158 @@
       progressPct.textContent = pct + '%';
       bar.style.width = pct + '%';
     }
+
     function toggleBM(id){
       const i = bookmarks.indexOf(id);
       if(i>=0) bookmarks.splice(i,1); else bookmarks.push(id);
       localStorage.setItem('qa_bm', JSON.stringify(bookmarks));
     }
 
-    // Controls
-    document.getElementById('toggleAll').onclick = ()=>{ allOpen=!allOpen; document.getElementById('toggleAll').textContent = allOpen?'📕 ซ่อนคำตอบทั้งหมด':'📖 แสดงคำตอบทั้งหมด'; render(); };
-    document.getElementById('showBM').onclick = ()=>{ bmOnly=!bmOnly; document.getElementById('showBM').textContent = bmOnly?'⭐ แสดงทั้งหมด':'⭐ เฉพาะบุ๊กมาร์ก'; render(); };
-    document.getElementById('theme').onclick = ()=>{
-      const cur = document.documentElement.getAttribute('data-theme');
-      const next = cur==='dark'?'light':'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      document.getElementById('themeIcon').textContent = next==='dark'?'☀️':'🌙';
-      localStorage.setItem('qa_theme', next);
-    };
-    // load saved theme
-    (function(){ const t = localStorage.getItem('qa_theme') || 'light'; document.documentElement.setAttribute('data-theme', t); document.getElementById('themeIcon').textContent = t==='dark'?'☀️':'🌙'; })();
+    // ---------- Search + Highlight + Jump ----------
+    function escapeRegex(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
 
-    // Tabs (รวมแท็บ hot)
+    function clearAllHighlights(root=document){
+      root.querySelectorAll('mark.hl').forEach(m=>{
+        const parent = m.parentNode;
+        parent.replaceChild(document.createTextNode(m.textContent), m);
+        parent.normalize();
+      });
+    }
+
+    function highlightInElement(el, term){
+      if(!term) return;
+      const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+        acceptNode: node => node.parentElement && !['SCRIPT','STYLE'].includes(node.parentElement.tagName) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+      });
+      let node;
+      const re = new RegExp(escapeRegex(term), 'gi');
+      while(node = walker.nextNode()){
+        const txt = node.nodeValue;
+        if(!txt) continue;
+        if(re.test(txt)){
+          const frag = document.createDocumentFragment();
+          let lastIndex = 0;
+          txt.replace(re, (match, offset)=>{
+            const before = txt.slice(lastIndex, offset);
+            if(before) frag.appendChild(document.createTextNode(before));
+            const mark = document.createElement('mark');
+            mark.className = 'hl';
+            mark.textContent = match;
+            frag.appendChild(mark);
+            lastIndex = offset + match.length;
+          });
+          const after = txt.slice(lastIndex);
+          if(after) frag.appendChild(document.createTextNode(after));
+          node.parentNode.replaceChild(frag, node);
+        }
+      }
+    }
+
+    function openAnswersContaining(term){
+      if(!term) return;
+      // Open any card that contains the term in question/answer
+      document.querySelectorAll('#host article').forEach(card=>{
+        const ans = card.querySelector('.answer');
+        const text = card.textContent.toLowerCase();
+        if(text.includes(term) && ans.classList.contains('hidden')){
+          ans.classList.remove('hidden');
+        }
+      });
+    }
+
+    function collectHits(){
+      hits = Array.from(document.querySelectorAll('mark.hl'));
+      hitIndex = hits.length ? 0 : -1;
+      updateHitCounter();
+    }
+
+    function scrollToCurrentHit(){
+      if(hitIndex<0 || hitIndex>=hits.length) return;
+      const el = hits[hitIndex];
+      el.scrollIntoView({behavior:'smooth', block:'center'});
+      // brief flash
+      el.style.transition='box-shadow .2s ease';
+      el.style.boxShadow='0 0 0 6px rgba(102,126,234,.35)';
+      setTimeout(()=>{ el.style.boxShadow='none'; }, 500);
+    }
+
+    function updateHitCounter(){
+      hitCounter.textContent = hits.length ? (hitIndex+1) + '/' + hits.length : '0/0';
+      prevHitBtn.disabled = hits.length===0;
+      nextHitBtn.disabled = hits.length===0;
+    }
+
+    function refreshHighlights(term){
+      clearAllHighlights(document);
+      if(!term){
+        hits=[]; hitIndex=-1; updateHitCounter(); return;
+      }
+      // open answers containing the term before highlight
+      openAnswersContaining(term);
+      // highlight in host area only
+      document.querySelectorAll('#host article').forEach(card=>{
+        highlightInElement(card, term);
+      });
+      collectHits();
+      if(hits.length){ scrollToCurrentHit(); }
+    }
+
+    // ---------- Controls ----------
+    document.getElementById('toggleAll').onclick = ()=>{
+      allOpen = !allOpen;
+      document.getElementById('toggleAll').textContent = allOpen ? '📕 ซ่อนคำตอบทั้งหมด' : '📖 แสดงคำตอบทั้งหมด';
+      render();
+    };
+
+    document.getElementById('showBM').onclick = ()=>{
+      bmOnly = !bmOnly;
+      document.getElementById('showBM').textContent = bmOnly ? '⭐ แสดงทั้งหมด' : '⭐ เฉพาะบุ๊กมาร์ก';
+      render();
+    };
+
     document.getElementById('tabs').addEventListener('click', (e)=>{
       const b = e.target.closest('button[data-ch]'); if(!b) return;
       chapter = b.dataset.ch;
-      [...document.querySelectorAll('#tabs button')].forEach(x=>x.classList.remove('bg-white/70','dark:bg-slate-800'));
-      b.classList.add('bg-white/70','dark:bg-slate-800');
+      // active style
+      [...document.querySelectorAll('#tabs button')].forEach(x=>x.classList.remove('btn-primary'));
+      b.classList.add('btn-primary'); b.classList.remove('btn-ghost');
+      render();
+      // keep search highlights after switching tab
+      if(search.value.trim()){ refreshHighlights(search.value.trim().toLowerCase()); }
+    });
+
+    // Search typing + Enter to next
+    search.addEventListener('input', ()=>{
+      render(); // re-render to ensure fresh content
+    });
+    search.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter'){
+        e.preventDefault();
+        if(hits.length===0) return;
+        hitIndex = (hitIndex+1) % hits.length;
+        updateHitCounter();
+        scrollToCurrentHit();
+      }
+    });
+    prevHitBtn.addEventListener('click', ()=>{
+      if(hits.length===0) return;
+      hitIndex = (hitIndex-1 + hits.length) % hits.length;
+      updateHitCounter();
+      scrollToCurrentHit();
+    });
+    nextHitBtn.addEventListener('click', ()=>{
+      if(hits.length===0) return;
+      hitIndex = (hitIndex+1) % hits.length;
+      updateHitCounter();
+      scrollToCurrentHit();
+    });
+    clearBtn.addEventListener('click', ()=>{
+      search.value = '';
+      refreshHighlights('');
       render();
     });
 
-    document.getElementById('search').addEventListener('input', render);
-
-    // boot
+    // ---------- Initial render ----------
     render();
   </script>
 </body>

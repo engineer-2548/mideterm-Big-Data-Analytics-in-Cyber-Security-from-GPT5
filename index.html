@@ -1,307 +1,137 @@
-<!DOCTYPE html>
-<html lang="th" data-theme="dark">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>แบบฝึกหัดทบทวน — Big Data Analytics in Cybersecurity</title>
+<?xml version="1.0" encoding="UTF-8"?>
+<questions>
+  <!-- โครงสร้างเหมือน fallback XML ใน index.html เพื่อให้ api.php แปลงเป็น JSON ได้ -->
+  <!-- CH1 -->
+  <q id="1" chapter="ch1" likely="true">
+    <question>Data Analytics กับ Data Science แตกต่างกันอย่างไร?</question>
+    <answer><![CDATA[
+      <table class="w-full border border-slate-700 text-sm">
+        <thead><tr class="bg-slate-800">
+          <th class="p-2 border border-slate-700">ประเด็น</th>
+          <th class="p-2 border border-slate-700">Data Analytics</th>
+          <th class="p-2 border border-slate-700">Data Science</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="p-2 border border-slate-700"><span class="kw">ขอบเขต</span></td>
+            <td class="p-2 border border-slate-700">วิเคราะห์/สรุป + <span class="kw">Visualization</span></td>
+            <td class="p-2 border border-slate-700">ครอบคลุม <span class="kw">เตรียมข้อมูล</span> ถึง <span class="kw">ML</span></td>
+          </tr>
+          <tr>
+            <td class="p-2 border border-slate-700"><span class="kw">คีย์เวิร์ดจำ</span></td>
+            <td class="p-2 border border-slate-700"><span class="kw">อธิบายสิ่งที่เกิดขึ้น</span></td>
+            <td class="p-2 border border-slate-700"><span class="kw">ทำนาย/สร้างแบบจำลอง</span></td>
+          </tr>
+        </tbody>
+      </table>
+    ]]></answer>
+  </q>
 
-  <!-- Tailwind via CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: { primary: '#6366f1', secondary: '#7c3aed' },
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    .kw { color:#f43f5e; font-weight:800; text-decoration:underline; }
-    .card { @apply bg-slate-900/70 border border-slate-700 rounded-2xl p-5 shadow-xl; }
-    .chip { @apply inline-block text-xs px-3 py-1 rounded-full border border-slate-700 text-slate-300; }
-    .ref { @apply mt-3 text-sm text-slate-400 border border-slate-700 rounded-lg p-3; }
-    .qnum { @apply bg-gradient-to-r from-brand-primary to-brand-secondary text-white text-xs font-bold px-3 py-1 rounded-full; }
-    .btn { @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl text-white bg-gradient-to-r from-brand-primary to-brand-secondary hover:opacity-90 transition; }
-    .btn-ghost { @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-700 text-slate-200 hover:bg-slate-800 transition; }
-    @media print {
-      .no-print { display:none !important; }
-      .answer { display:block !important; }
-    }
-  </style>
-</head>
-<body class="bg-slate-950 text-slate-100">
-  <div class="max-w-6xl mx-auto p-6">
-    <header class="card">
-      <h1 class="text-3xl font-black tracking-tight">📚 แบบฝึกหัดทบทวนก่อนสอบกลางภาค</h1>
-      <p class="text-slate-300 mt-1">วิชา Big Data Analytics in Cybersecurity</p>
-      <div class="mt-3 space-x-2">
-        <span class="chip">14 คำถาม</span>
-        <span class="chip">มีตารางเปรียบเทียบ/คีย์เวิร์ด</span>
-        <span class="chip">HTML · Tailwind · JS · PHP · XML</span>
-      </div>
-    </header>
-
-    <!-- Stats -->
-    <section class="grid grid-cols-2 md:grid-cols-4 gap-3 my-4">
-      <div class="card text-center"><div class="text-xl font-bold" id="stat-total">14</div><div class="text-slate-400 text-sm">คำถามทั้งหมด</div></div>
-      <div class="card text-center"><div class="text-xl font-bold" id="stat-bm">0</div><div class="text-slate-400 text-sm">บุ๊กมาร์ก</div></div>
-      <div class="card text-center"><div class="text-xl font-bold" id="stat-progress">0%</div><div class="text-slate-400 text-sm">ความคืบหน้า</div></div>
-      <div class="card text-center"><div class="text-xl font-bold">8/14</div><div class="text-slate-400 text-sm">โจทย์คาดว่าออก</div></div>
-    </section>
-
-    <!-- Controls -->
-    <section class="card no-print">
-      <div class="flex flex-col md:flex-row gap-3 items-center">
-        <input id="search" class="w-full md:flex-1 bg-slate-900 border border-slate-700 rounded-xl px-4 py-2"
-               placeholder="🔍 ค้นหา: CSF, Kill Chain, Log, IPS, ฯลฯ" />
-        <div class="flex gap-2">
-          <button class="btn" id="toggleAll">📖 แสดงคำตอบทั้งหมด</button>
-          <button class="btn-ghost" id="showBM">⭐ เฉพาะบุ๊กมาร์ก</button>
-          <button class="btn-ghost" id="resetFilter">รีเซ็ต</button>
-          <button class="btn-ghost" onclick="window.print()">🖨️ พิมพ์</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Tabs -->
-    <nav class="no-print my-3 overflow-auto">
-      <div class="inline-flex gap-2" id="tabs">
-        <button data-chapter="all" class="btn-ghost active">ทั้งหมด</button>
-        <button data-chapter="ch1" class="btn-ghost">Chapter 1</button>
-        <button data-chapter="ch2" class="btn-ghost">Chapter 2</button>
-        <button data-chapter="ch3" class="btn-ghost">Chapter 3</button>
-        <button data-chapter="ch4" class="btn-ghost">Chapter 4</button>
-        <button data-chapter="ch5" class="btn-ghost">Chapter 5</button>
-      </div>
-    </nav>
-
-    <!-- Questions render target -->
-    <main id="list" class="space-y-4"></main>
-
-    <!-- Prediction card -->
-    <section class="card mt-6">
-      <div class="flex items-center gap-2 mb-2">
-        <span class="qnum">คาดการณ์</span>
-        <h2 class="font-bold">🔮 8 ข้อที่น่าจะออก</h2>
-      </div>
-      <ul class="list-disc pl-6 text-slate-300">
-        <li>ข้อ 1, 3, 4, 6, 10, 11, 13, 14 — ครอบคลุมแกนหลักของวิชา (นิยามพื้นฐาน, กรอบมาตรฐาน, IR Cycle, IDPS/IPS)</li>
+  <q id="2" chapter="ch1">
+    <question>4 ระดับของ Data Analytics คืออะไร อธิบายพร้อมคีย์เวิร์ด</question>
+    <answer><![CDATA[
+      <ul class="list-disc pl-6">
+        <li><b>Descriptive</b> — <span class="kw">“เกิดอะไรขึ้น?”</span></li>
+        <li><b>Diagnostic</b> — <span class="kw">“ทำไมถึงเกิด?”</span></li>
+        <li><b>Predictive</b> — <span class="kw">“จะเกิดอะไร?”</span></li>
+        <li><b>Prescriptive</b> — <span class="kw">“ควรทำอย่างไร?”</span></li>
       </ul>
-      <p class="text-xs text-slate-500 mt-2">*เป็นการคาดการณ์เชิงเหตุผลจาก “ความสำคัญเชิงเนื้อหา” ไม่ใช่คำยืนยันจากอาจารย์</p>
-    </section>
-  </div>
+    ]]></answer>
+  </q>
 
-  <!-- Fallback XML (ใช้บน GitHub Pages ได้) -->
-  <script id="fallback-xml" type="application/xml">
-    <questions>
-      <!-- CH1 -->
-      <q id="1" chapter="ch1" likely="true">
-        <question>Data Analytics กับ Data Science แตกต่างกันอย่างไร?</question>
-        <answer><![CDATA[
-          <table class="w-full border border-slate-700 text-sm">
-            <thead><tr class="bg-slate-800">
-              <th class="p-2 border border-slate-700">ประเด็น</th>
-              <th class="p-2 border border-slate-700">Data Analytics</th>
-              <th class="p-2 border border-slate-700">Data Science</th>
-            </tr></thead>
-            <tbody>
-              <tr>
-                <td class="p-2 border border-slate-700"><span class="kw">ขอบเขต</span></td>
-                <td class="p-2 border border-slate-700">วิเคราะห์/สรุปข้อมูลปัจจุบัน สร้างอินไซต์และ <span class="kw">Visualization</span></td>
-                <td class="p-2 border border-slate-700">ครอบคลุมวงจรข้อมูลทั้งหมด ตั้งแต่ <span class="kw">เตรียมข้อมูล</span> จนถึง <span class="kw">ML</span></td>
-              </tr>
-              <tr>
-                <td class="p-2 border border-slate-700"><span class="kw">คีย์เวิร์ดจำ</span></td>
-                <td class="p-2 border border-slate-700"><span class="kw">อธิบายสิ่งที่เกิดขึ้น</span></td>
-                <td class="p-2 border border-slate-700"><span class="kw">ทำนาย/สร้างแบบจำลอง</span></td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="ref">คำอธิบาย: ใช้ตารางเน้น “สิ่งที่แตกต่าง” ชัดเจน โดยย้ำคีย์เวิร์ดในมิติ <b>ขอบเขต</b> และ <b>เป้าหมาย</b>.</div>
-        ]]></answer>
-      </q>
+  <q id="3" chapter="ch1" likely="true">
+    <question>5V ของ Big Data คืออะไร?</question>
+    <answer><![CDATA[
+      <ul class="list-disc pl-6">
+        <li><span class="kw">Volume</span>, <span class="kw">Variety</span>, <span class="kw">Velocity</span>, <span class="kw">Veracity</span>, <span class="kw">Value</span></li>
+      </ul>
+    ]]></answer>
+  </q>
 
-      <q id="2" chapter="ch1">
-        <question>4 ระดับของ Data Analytics คืออะไร อธิบายพร้อมคีย์เวิร์ด</question>
-        <answer><![CDATA[
-          <ul class="list-disc pl-6">
-            <li><b>Descriptive</b> — คีย์เวิร์ด: <span class="kw">“เกิดอะไรขึ้น?”</span> สรุปอดีตด้วยรายงาน/แดชบอร์ด</li>
-            <li><b>Diagnostic</b> — คีย์เวิร์ด: <span class="kw">“ทำไมถึงเกิด?”</span> หาเหตุ-ปัจจัย (Root Cause)</li>
-            <li><b>Predictive</b> — คีย์เวิร์ด: <span class="kw">“จะเกิดอะไร?”</span> สร้างโมเดลทำนายจากอดีต</li>
-            <li><b>Prescriptive</b> — คีย์เวิร์ด: <span class="kw">“ควรทำอย่างไร?”</span> เสนอทางเลือกที่เหมาะสม</li>
-          </ul>
-          <div class="ref">ทริคจำ: D1 <i>เกิด</i> → D2 <i>ทำไม</i> → P3 <i>จะเกิด</i> → P4 <i>ควรทำ</i>.</div>
-        ]]></answer>
-      </q>
+  <!-- CH2 -->
+  <q id="4" chapter="ch2" likely="true">
+    <question>NIST CSF 2.0 มีฟังก์ชันหลักอะไรบ้าง?</question>
+    <answer><![CDATA[
+      <p><span class="kw">GV-ID-PR-DE-RS-RC</span></p>
+    ]]></answer>
+  </q>
 
-      <q id="3" chapter="ch1" likely="true">
-        <question>5V ของ Big Data คืออะไร?</question>
-        <answer><![CDATA[
-          <ul class="list-disc pl-6">
-            <li><span class="kw">Volume</span> — ปริมาณข้อมูลมหาศาล</li>
-            <li><span class="kw">Variety</span> — รูปแบบหลากหลาย (structured/semi/unstructured)</li>
-            <li><span class="kw">Velocity</span> — ความเร็วในการไหลเข้า/ประมวลผล</li>
-            <li><span class="kw">Veracity</span> — ความเชื่อถือ/ความคลาดเคลื่อนของข้อมูล</li>
-            <li><span class="kw">Value</span> — คุณค่าที่ดึงออกมาใช้งานได้จริง</li>
-          </ul>
-        ]]></answer>
-      </q>
+  <q id="5" chapter="ch2">
+    <question>5 ขั้นตอนสร้าง CSF Organizational Profile</question>
+    <answer><![CDATA[
+      <ol class="list-decimal pl-6">
+        <li><span class="kw">Scope</span></li><li><span class="kw">Current</span></li><li><span class="kw">Risk</span></li><li><span class="kw">Target</span></li><li><span class="kw">Gap/Action</span></li>
+      </ol>
+    ]]></answer>
+  </q>
 
-      <!-- CH2 -->
-      <q id="4" chapter="ch2" likely="true">
-        <question>NIST CSF 2.0 มีฟังก์ชันหลักอะไรบ้าง?</question>
-        <answer><![CDATA[
-          <ul class="list-disc pl-6">
-            <li><span class="kw">Govern (GV)</span> — ธรรมาภิบาล/นโยบาย/กลยุทธ์</li>
-            <li><span class="kw">Identify (ID)</span> — สินทรัพย์/บริบท/ความเสี่ยง</li>
-            <li><span class="kw">Protect (PR)</span> — การควบคุมเชิงป้องกัน</li>
-            <li><span class="kw">Detect (DE)</span> — เฝ้าระวัง/ตรวจพบ</li>
-            <li><span class="kw">Respond (RS)</span> — ตอบสนอง/ลดผลกระทบ</li>
-            <li><span class="kw">Recover (RC)</span> — ฟื้นฟู/ปรับปรุง</li>
-          </ul>
-          <div class="ref">คีย์เวิร์ดเรียงจำ: <b>GV-ID-PR-DE-RS-RC</b>.</div>
-        ]]></answer>
-      </q>
+  <q id="6" chapter="ch2" likely="true">
+    <question>อธิบาย 7 ขั้นของ Cyber Kill Chain</question>
+    <answer><![CDATA[
+      <ol class="list-decimal pl-6"><li>Recon</li><li>Weaponization</li><li>Delivery</li><li>Exploitation</li><li>Installation</li><li>C2</li><li>Actions</li></ol>
+    ]]></answer>
+  </q>
 
-      <q id="5" chapter="ch2">
-        <question>5 ขั้นตอนสร้าง CSF Organizational Profile</question>
-        <answer><![CDATA[
-          <ol class="list-decimal pl-6">
-            <li><span class="kw">Scope</span> — กำหนดขอบเขต/บริบท</li>
-            <li><span class="kw">Current Profile</span> — ประเมินสภาพปัจจุบัน</li>
-            <li><span class="kw">Risk Assessment</span> — ประเมินความเสี่ยงสำคัญ</li>
-            <li><span class="kw">Target Profile</span> — นิยามสภาพเป้าหมาย</li>
-            <li><span class="kw">Gap & Action Plan</span> — หา <b>ช่องว่าง</b> แล้วทำแผนปิดช่องว่าง</li>
-          </ol>
-          <div class="ref">ทางปฏิบัติ: วนรอบปรับปรุง (Iterative) และสื่อสาร Stakeholders เสมอ</div>
-        ]]></answer>
-      </q>
+  <!-- CH3 -->
+  <q id="7" chapter="ch3" likely="true">
+    <question>InfoSec vs Cybersecurity (ตาราง)</question>
+    <answer><![CDATA[
+      <table class="w-full border border-slate-700 text-sm"><tbody>
+      <tr><td class="p-2 border"><span class="kw">ขอบเขต</span></td><td class="p-2 border">ข้อมูลทุกแบบ</td><td class="p-2 border">ระบบ/เครือข่ายดิจิทัล</td></tr>
+      </tbody></table>
+    ]]></answer>
+  </q>
 
-      <q id="6" chapter="ch2" likely="true">
-        <question>อธิบาย 7 ขั้นของ <i>Cyber Kill Chain</i></question>
-        <answer><![CDATA[
-          <ol class="list-decimal pl-6">
-            <li><span class="kw">Reconnaissance</span> — สำรวจเป้าหมาย</li>
-            <li><span class="kw">Weaponization</span> — เตรียม payload/อาวุธ</li>
-            <li><span class="kw">Delivery</span> — ส่งเข้าเป้าหมาย</li>
-            <li><span class="kw">Exploitation</span> — ใช้ช่องโหว่ให้โค้ดทำงาน</li>
-            <li><span class="kw">Installation</span> — ติดตั้งเพื่อคงอยู่</li>
-            <li><span class="kw">Command & Control</span> — ช่องควบคุมระยะไกล</li>
-            <li><span class="kw">Actions on Objectives</span> — ทำตามเป้าหมายโจมตี</li>
-          </ol>
-        ]]></answer>
-      </q>
+  <q id="8" chapter="ch3">
+    <question>Deepfake Attack คืออะไร + ตัวอย่าง + แนวทางป้องกัน</question>
+    <answer><![CDATA[
+      <p>สื่อปลอมด้วย AI; ยืนยันตัวตนช่องทางที่สอง</p>
+    ]]></answer>
+  </q>
 
-      <!-- CH3 -->
-      <q id="7" chapter="ch3" likely="true">
-        <question>InfoSec ต่างจาก Cybersecurity อย่างไร (ตารางเปรียบเทียบ)</question>
-        <answer><![CDATA[
-          <table class="w-full border border-slate-700 text-sm">
-            <thead><tr class="bg-slate-800"><th class="p-2 border">ประเด็น</th><th class="p-2 border">Information Security</th><th class="p-2 border">Cybersecurity</th></tr></thead>
-            <tbody>
-              <tr><td class="p-2 border"><span class="kw">ขอบเขต</span></td><td class="p-2 border">ปกป้อง <b>สารสนเทศทุกแบบ</b> (ดิจิทัล/กายภาพ)</td><td class="p-2 border">ปกป้อง <b>สินทรัพย์ดิจิทัล/ระบบ/เครือข่าย</b></td></tr>
-              <tr><td class="p-2 border"><span class="kw">หลักการ</span></td><td class="p-2 border"><span class="kw">CIA Triad</span> เป็นฐาน</td><td class="p-2 border">เน้น <b>ป้องกันการโจมตีไซเบอร์</b></td></tr>
-              <tr><td class="p-2 border"><span class="kw">ตัวอย่าง</span></td><td class="p-2 border">นโยบายเอกสาร/ห้องเก็บ</td><td class="p-2 border">FW/AV/IDS-IPS/EDR</td></tr>
-            </tbody>
-          </table>
-        ]]></answer>
-      </q>
+  <q id="9" chapter="ch3" likely="true">
+    <question>Spyware vs Adware (ตาราง)</question>
+    <answer><![CDATA[
+      <table class="w-full border border-slate-700 text-sm"><tbody>
+      <tr><td class="p-2 border"><span class="kw">Permission</span></td><td class="p-2 border">ไม่มี</td><td class="p-2 border">มักมี</td></tr>
+      </tbody></table>
+    ]]></answer>
+  </q>
 
-      <q id="8" chapter="ch3">
-        <question>Deepfake Attack คืออะไร + ตัวอย่าง + แนวทางป้องกัน</question>
-        <answer><![CDATA[
-          <p><b>นิยาม:</b> ใช้ AI/Deep Learning สร้าง/ดัดแปลง <span class="kw">ภาพ-เสียง-วิดีโอ</span> ให้เหมือนจริงเพื่อหลอกลวง</p>
-          <ul class="list-disc pl-6">
-            <li><b>ตัวอย่าง:</b> ปลอมเสียงผู้บริหารสั่งโอนเงิน, วิดีโอปลอมโปรโมตลงทุน</li>
-            <li><b>ป้องกัน:</b> สงสัยสิ่งผิดปกติ (การขยับปาก/จังหวะ), <span class="kw">ยืนยันตัวตนช่องทางที่สอง</span>, ใช้เทคโนโลยีตรวจจับ, กระบวนการอนุมัติหลายชั้น</li>
-          </ul>
-        ]]></answer>
-      </q>
+  <!-- CH4 -->
+  <q id="10" chapter="ch4" likely="true">
+    <question>Cyber Incident Response Cycle</question>
+    <answer><![CDATA[
+      <p>Prep → Detect/Analyze → Contain/Erad/Recover → Post</p>
+    ]]></answer>
+  </q>
 
-      <q id="9" chapter="ch3" likely="true">
-        <question>Spyware กับ Adware ต่างกันอย่างไร (ตาราง)</question>
-        <answer><![CDATA[
-          <table class="w-full border border-slate-700 text-sm">
-            <thead><tr class="bg-slate-800"><th class="p-2 border">หัวข้อ</th><th class="p-2 border">Spyware</th><th class="p-2 border">Adware</th></tr></thead>
-            <tbody>
-              <tr><td class="p-2 border"><span class="kw">การยินยอม</span></td><td class="p-2 border"><span class="kw">ไม่มี</span> — ทำงานแอบแฝง</td><td class="p-2 border"><span class="kw">มักมี</span> — พ่วงมากับฟรีแวร์</td></tr>
-              <tr><td class="p-2 border">ผลกระทบ</td><td class="p-2 border">ละเมิดความเป็นส่วนตัว/ขโมยข้อมูล</td><td class="p-2 border">รบกวน/ยิงโฆษณา/ชะลอเครื่อง</td></tr>
-            </tbody>
-          </table>
-          <div class="ref">คีย์เวิร์ดต่าง: <b class="kw">Permission</b> คือเส้นแบ่งหลัก</div>
-        ]]></answer>
-      </q>
+  <q id="11" chapter="ch4" likely="true">
+    <question>Log Management (4)</question>
+    <answer><![CDATA[
+      <p>Generation / Transmission / Storage-Disposal / Analysis</p>
+    ]]></answer>
+  </q>
 
-      <!-- CH4 -->
-      <q id="10" chapter="ch4" likely="true">
-        <question>อธิบาย Cyber Incident Response Cycle</question>
-        <answer><![CDATA[
-          <ol class="list-decimal pl-6">
-            <li><span class="kw">Preparation</span> — นโยบาย/ทีม/เครื่องมือพร้อม</li>
-            <li><span class="kw">Detection & Analysis</span> — ตรวจพบ/ยืนยันเหตุ</li>
-            <li><span class="kw">Containment, Eradication & Recovery</span> — กักกัน/ขจัด/กู้คืน</li>
-            <li><span class="kw">Post-Incident Activity</span> — รายงาน/บทเรียน/ปรับปรุง</li>
-          </ol>
-        ]]></answer>
-      </q>
+  <!-- CH5 -->
+  <q id="12" chapter="ch5" likely="true">
+    <question>3 ฟังก์ชัน IPS</question>
+    <answer><![CDATA[
+      <p>หยุด / เปลี่ยนสภาพแวดล้อม / เปลี่ยนเนื้อหา</p>
+    ]]></answer>
+  </q>
 
-      <q id="11" chapter="ch4" likely="true">
-        <question>4 องค์ประกอบของ Log Management</question>
-        <answer><![CDATA[
-          <ul class="list-disc pl-6">
-            <li><span class="kw">Generation</span> — แหล่งกำเนิด log</li>
-            <li><span class="kw">Transmission</span> — ส่งรวบรวมอย่างปลอดภัย</li>
-            <li><span class="kw">Storage & Disposal</span> — เก็บตามอายุ/ทำลายถูกวิธี</li>
-            <li><span class="kw">Analysis</span> — วิเคราะห์หาเหตุผิดปกติ</li>
-          </ul>
-        ]]></answer>
-      </q>
+  <q id="13" chapter="ch5" likely="true">
+    <question>Detection Methodologies (3)</question>
+    <answer><![CDATA[
+      <p>Signature / Anomaly / Stateful Protocol</p>
+    ]]></answer>
+  </q>
 
-      <!-- CH5 -->
-      <q id="12" chapter="ch5" likely="true">
-        <question>3 ฟังก์ชันหลักของ IPS พร้อมตัวอย่าง</question>
-        <answer><![CDATA[
-          <ol class="list-decimal pl-6">
-            <li><span class="kw">หยุดการโจมตี</span> (Terminate session/Block IP)</li>
-            <li><span class="kw">เปลี่ยนสภาพแวดล้อม</span> (สั่ง FW ปิดพอร์ต/แก้ rule)</li>
-            <li><span class="kw">เปลี่ยนเนื้อหาโจมตี</span> (Strip ไฟล์แนบอันตราย)</li>
-          </ol>
-        ]]></answer>
-      </q>
-
-      <q id="13" chapter="ch5" likely="true">
-        <question>Detection Methodologies (3 แบบ) — จุดเด่น/ข้อจำกัด</question>
-        <answer><![CDATA[
-          <table class="w-full border border-slate-700 text-sm">
-            <thead><tr class="bg-slate-800"><th class="p-2 border">วิธี</th><th class="p-2 border">คีย์เวิร์ด</th><th class="p-2 border">เด่น</th><th class="p-2 border">จำกัด</th></tr></thead>
-            <tbody>
-              <tr><td class="p-2 border"><b>Signature</b></td><td class="p-2 border"><span class="kw">ลายเซ็นที่รู้จัก</span></td><td class="p-2 border">แม่นกับภัยเดิม</td><td class="p-2 border">พลาด <span class="kw">Zero-day</span></td></tr>
-              <tr><td class="p-2 border"><b>Anomaly</b></td><td class="p-2 border"><span class="kw">เบี่ยงเบนจากปกติ</span></td><td class="p-2 border">จับภัยใหม่ได้</td><td class="p-2 border"><span class="kw">False Positive</span> สูง</td></tr>
-              <tr><td class="p-2 border"><b>Stateful Protocol</b></td><td class="p-2 border"><span class="kw">ตรวจตามกฎโปรโตคอล</span></td><td class="p-2 border">เข้าใจบริบทการสื่อสาร</td><td class="p-2 border">ใช้ทรัพยากร/พลาดภัยที่เลียนแบบปกติ</td></tr>
-            </tbody>
-          </table>
-        ]]></answer>
-      </q>
-
-      <q id="14" chapter="ch5" likely="true">
-        <question>องค์ประกอบของระบบ IDPS</question>
-        <answer><![CDATA[
-          <ul class="list-disc pl-6">
-            <li><span class="kw">Sensor/Agent</span> — เก็บเหตุการณ์ (NIDS/HIDS)</li>
-            <li><span class="kw">Management Server</span> — รวม/วิเคราะห์/Correlation</li>
-            <li><span class="kw">Database Server</span> — จัดเก็บเหตุการณ์</li>
-            <li><span class="kw">Console</span> — UI สำหรับผู้ดูแล</li>
-          </ul>
-        ]]></answer>
-      </q>
-    </questions>
-  </script>
-
-  <script src="app.js"></script>
-</body>
-</html>
+  <q id="14" chapter="ch5" likely="true">
+    <question>องค์ประกอบ IDPS</question>
+    <answer><![CDATA[
+      <p>Sensor/Agent, Management, DB, Console</p>
+    ]]></answer>
+  </q>
+</questions>

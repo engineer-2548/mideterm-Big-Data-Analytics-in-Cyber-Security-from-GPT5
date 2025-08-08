@@ -45,7 +45,7 @@
       <div class="card rounded-2xl p-4 text-center shadow"><div class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white to-pink-300">14</div><div class="text-slate-600 dark:text-slate-300 text-sm">คำถามทั้งหมด</div></div>
       <div class="card rounded-2xl p-4 text-center shadow"><div id="bmCount" class="text-xl font-bold">0</div><div class="text-slate-600 dark:text-slate-300 text-sm">บุ๊กมาร์ก</div></div>
       <div class="card rounded-2xl p-4 text-center shadow"><div id="progressPct" class="text-xl font-bold">0%</div><div class="text-slate-600 dark:text-slate-300 text-sm">ความคืบหน้า</div></div>
-      <div class="card rounded-2xl p-4 text-center shadow"><div class="text-xl font-bold">คาดออก 8/14</div><div class="text-slate-600 dark:text-slate-300 text-sm">ตามความสำคัญเนื้อหา</div></div>
+      <div class="card rounded-2xl p-4 text-center shadow"><div class="text-xl font-bold"><span id="hotCount">8</span>/14</div><div class="text-slate-600 dark:text-slate-300 text-sm">คาดว่าออก</div></div>
     </section>
 
     <!-- Progress -->
@@ -61,4 +61,262 @@
       </div>
       <div class="flex gap-2">
         <button id="toggleAll" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brand-p to-brand-s text-white">📖 แสดงคำตอบทั้งหมด</button>
-        <button id="showBM" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100">⭐
+        <button id="showBM" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100">⭐ เฉพาะบุ๊กมาร์ก</button>
+        <button id="theme" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-slate-100"><span id="themeIcon">🌙</span></button>
+      </div>
+    </section>
+
+    <!-- Tabs (เพิ่มแท็บ 🔥 ออกบ่อย) -->
+    <nav class="no-print my-3 overflow-auto">
+      <div id="tabs" class="inline-flex gap-2">
+        <button data-ch="all" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white/70 dark:bg-slate-800">ทั้งหมด</button>
+        <button data-ch="hot" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">🔥 ออกบ่อย</button>
+        <button data-ch="ch1" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Chapter 1</button>
+        <button data-ch="ch2" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Chapter 2</button>
+        <button data-ch="ch3" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Chapter 3</button>
+        <button data-ch="ch4" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Chapter 4</button>
+        <button data-ch="ch5" class="px-4 py-2 rounded-xl border border-slate-300 dark:border-slate-700">Chapter 5</button>
+      </div>
+    </nav>
+
+    <!-- Questions -->
+    <main id="host" class="space-y-3"></main>
+
+    <!-- Floating buttons -->
+    <div class="fixed bottom-5 right-5 flex flex-col gap-2 no-print">
+      <button onclick="window.scrollTo({top:0,behavior:'smooth'})" class="w-12 h-12 rounded-full bg-gradient-to-r from-brand-p to-brand-s text-white shadow">⬆️</button>
+      <button onclick="window.print()" class="w-12 h-12 rounded-full bg-gradient-to-r from-brand-p to-brand-s text-white shadow">🖨️</button>
+    </div>
+  </div>
+
+  <!-- ===== JSON (มาร์ก likely:true แค่ 8 ข้อ: 1,3,4,6,10,11,13,14) ===== -->
+  <script id="qa-json" type="application/json">
+  {
+    "questions": [
+      {
+        "id": 1, "num": 1, "ch": "ch1", "likely": true,
+        "q": "Data Analytics กับ Data Science แตกต่างกันอย่างไร?",
+        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>มิติ</th><th>Data Analytics</th><th>Data Science</th></tr></thead><tbody><tr><td><span class='kw'>ขอบเขต</span></td><td>วิเคราะห์สรุปสิ่งที่ <b class='kw'>เกิดขึ้น</b> (รายงาน/แดชบอร์ด)</td><td>ครอบคลุมทั้งวงจรข้อมูล: เก็บ–เตรียม–สร้าง <b class='kw'>โมเดล ML</b>–ดีพลอย</td></tr><tr><td><span class='kw'>ข้อมูล</span></td><td>Structured เป็นหลัก</td><td>Structured + Semi + <b>Unstructured</b></td></tr><tr><td><span class='kw'>ทักษะ</span></td><td>SQL, สถิติพรรณนา, Visualization</td><td>สถิติขั้นสูง, ML, MLOps, วิศวกรรมข้อมูล</td></tr><tr><td><span class='kw'>เป้าหมาย</span></td><td><b class='kw'>Insight เพื่อการตัดสินใจ</b></td><td><b class='kw'>ระบบอัจฉริยะ/การพยากรณ์</b></td></tr></tbody></table></div><p><b>คีย์เวิร์ดจำ:</b> Analytics = <span class='kw'>อธิบายอดีต</span>, Science = <span class='kw'>สร้างแบบจำลอง</span></p>",
+        "ref": [
+          "จากไฟล์: Ch1_Introduction to BDA in Cybersecurity.pdf — หน้า 4–5",
+          "แหล่งภายนอก: IBM/Oracle (2024)"
+        ]
+      },
+      {
+        "id": 2, "num": 2, "ch": "ch1", "likely": false,
+        "q": "อธิบายประเภทการวิเคราะห์ข้อมูล (Types of Data Analytics) ทั้ง 4 ระดับ",
+        "a": "<ol class='list-decimal pl-6'><li><b class='kw'>Descriptive</b> — <span class='kw'>“เกิดอะไรขึ้น?”</span></li><li><b class='kw'>Diagnostic</b> — <span class='kw'>“ทำไมถึงเกิด?”</span></li><li><b class='kw'>Predictive</b> — <span class='kw'>“จะเกิดอะไรขึ้น?”</span></li><li><b class='kw'>Prescriptive</b> — <span class='kw'>“ควรทำอย่างไร?”</span></li></ol>",
+        "ref": [
+          "จากไฟล์: Ch1_Introduction to BDA in Cybersecurity.pdf — หน้า 7",
+          "แหล่งภายนอก: IBM (2024), Oracle (2024)"
+        ]
+      },
+      {
+        "id": 3, "num": 3, "ch": "ch1", "likely": true,
+        "q": "คุณลักษณะสำคัญของ Big Data ทั้ง 5V ประกอบด้วยอะไร?",
+        "a": "<ul class='list-disc pl-6'><li><b class='kw'>Volume</b> — ปริมาณมหาศาล</li><li><b class='kw'>Velocity</b> — ไหลเข้า/ประมวลผลรวดเร็ว</li><li><b class='kw'>Variety</b> — หลากหลายรูปแบบ</li><li><b class='kw'>Veracity</b> — ความเชื่อถือได้/ความไม่แน่นอน</li><li><b class='kw'>Value</b> — เปลี่ยนเป็น <b>คุณค่าทางธุรกิจ</b></li></ul>",
+        "ref": [
+          "จากไฟล์: Ch1_Introduction to BDA in Cybersecurity.pdf — หน้า 8–10",
+          "แหล่งภายนอก: IBM/SAS/TechTarget (2023–2024)"
+        ]
+      },
+      {
+        "id": 4, "num": 4, "ch": "ch2", "likely": true,
+        "q": "NIST Cybersecurity Framework 2.0 ประกอบด้วยฟังก์ชันหลักอะไรบ้าง?",
+        "a": "<ul class='list-disc pl-6'><li><b class='kw'>Govern (GV)</b></li><li><b class='kw'>Identify (ID)</b></li><li><b class='kw'>Protect (PR)</b></li><li><b class='kw'>Detect (DE)</b></li><li><b class='kw'>Respond (RS)</b></li><li><b class='kw'>Recover (RC)</b></li></ul><p><b>คีย์เวิร์ดจำ:</b> <span class='kw'>GV–ID–PR–DE–RS–RC</span></p>",
+        "ref": [
+          "จากไฟล์: Ch2_CybersecurityFramework-2025.pdf — หน้า 11–17"
+        ]
+      },
+      {
+        "id": 5, "num": 5, "ch": "ch2", "likely": false,
+        "q": "ขั้นตอนการสร้าง CSF Organizational Profile ตาม NIST มีอะไรบ้าง?",
+        "a": "<ol class='list-decimal pl-6'><li><b class='kw'>Scope</b></li><li><b class='kw'>Gather</b></li><li><b class='kw'>Create</b> Current/Target</li><li><b class='kw'>Analyze gaps & Plan</b></li><li><b class='kw'>Implement & Update</b></li></ol>",
+        "ref": [
+          "จากไฟล์: Ch2_CybersecurityFramework-2025.pdf — หน้า 25–27",
+          "แหล่งภายนอก: NIST CSF Quick Start (2023)"
+        ]
+      },
+      {
+        "id": 6, "num": 6, "ch": "ch2", "likely": true,
+        "q": "อธิบายแต่ละขั้นตอนใน Cyber Kill Chain framework",
+        "a": "<ol class='list-decimal pl-6'><li><b class='kw'>Reconnaissance</b></li><li><b class='kw'>Weaponization</b></li><li><b class='kw'>Delivery</b></li><li><b class='kw'>Exploitation</b></li><li><b class='kw'>Installation</b></li><li><b class='kw'>Command & Control</b></li><li><b class='kw'>Actions on Objectives</b></li></ol>",
+        "ref": [
+          "จากไฟล์: Ch2_CybersecurityFramework-2025.pdf — หน้า 37–45"
+        ]
+      },
+      {
+        "id": 7, "num": 7, "ch": "ch3", "likely": false,
+        "q": "ความแตกต่างระหว่าง Information Security และ Cybersecurity คืออะไร?",
+        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>หัวข้อ</th><th>Information Security</th><th>Cybersecurity</th></tr></thead><tbody><tr><td><span class='kw'>ขอบเขต</span></td><td>ปกป้อง <b>สารสนเทศทุกสื่อ</b> (กระดาษ/ดิจิทัล)</td><td>ปกป้อง <b>ทรัพย์สินดิจิทัล/ระบบ/เครือข่าย</b></td></tr><tr><td><span class='kw'>หลักการเด่น</span></td><td><b class='kw'>CIA Triad</b></td><td>รับมือภัยไซเบอร์เฉพาะทาง</td></tr></tbody></table></div><p><b>คีย์เวิร์ด:</b> <span class='kw'>InfoSec=ทุกสื่อ</span> | <span class='kw'>Cyber=ดิจิทัล</span></p>",
+        "ref": [
+          "จากไฟล์: Ch3_Threat - Risks and Awareness-2025.pdf — หน้า 4–8"
+        ]
+      },
+      {
+        "id": 8, "num": 8, "ch": "ch3", "likely": false,
+        "q": "Deepfake Attack คืออะไร พร้อมตัวอย่างและแนวทางป้องกัน",
+        "a": "<p><b class='kw'>Deepfake</b> = สื่อภาพ/เสียง/วิดีโอที่สร้างด้วย AI เพื่อหลอกลวง</p><ul class='list-disc pl-6'><li>ตัวอย่าง: ปลอมเสียงผู้บริหารสั่งโอนเงิน</li><li>ป้องกัน: <span class='kw'>ยืนยันตัวตนช่องทางที่สอง</span>, สงสัยคำขอเร่งด่วน, สังเกตความผิดปกติ, อบรม/กระบวนการอนุมัติหลายชั้น</li></ul>",
+        "ref": [
+          "จากไฟล์: (ไม่มีรายละเอียดเฉพาะเรื่องนี้)",
+          "แหล่งภายนอก: NSA/FBI/CISA (2023); NCSC-UK (2024–2025)"
+        ]
+      },
+      {
+        "id": 9, "num": 9, "ch": "ch3", "likely": false,
+        "q": "Spyware และ Adware แตกต่างกันอย่างไร?",
+        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>หัวข้อ</th><th>Spyware</th><th>Adware</th></tr></thead><tbody><tr><td><span class='kw'>ความยินยอม</span></td><td><b class='kw'>ไม่มี</b></td><td><b class='kw'>มักมี</b></td></tr><tr><td>พฤติกรรม</td><td>สอดแนม/ขโมยข้อมูล</td><td>ยิงโฆษณา/ติดตามเพื่อโฆษณา</td></tr><tr><td>ผลกระทบ</td><td>รั่วไหลข้อมูลส่วนบุคคล</td><td>รำคาญ/ช้า/เสี่ยงมัลแวร์</td></tr></tbody></table></div>",
+        "ref": [
+          "จากไฟล์: Ch3_Threat - Risks and Awareness-2025.pdf — หน้า 34"
+        ]
+      },
+      {
+        "id": 10, "num": 10, "ch": "ch4", "likely": true,
+        "q": "อธิบายวงจรการตอบสนองเหตุการณ์ (Cyber Incident Response Cycle)",
+        "a": "<ol class='list-decimal pl-6'><li><b class='kw'>Preparation</b></li><li><b class='kw'>Detection & Analysis</b></li><li><b class='kw'>Containment, Eradication & Recovery</b></li><li><b class='kw'>Post-incident Activity</b></li></ol><p><b>คีย์เวิร์ด:</b> <span class='kw'>เตรียม → ตรวจ/วิเคราะห์ → กัก/ลบ/กู้ → สรุปบทเรียน</span></p>",
+        "ref": [
+          "จากไฟล์: Ch4_Incident Management and Cyber Resilience Framework _ Log.pdf — หน้า 14–18"
+        ]
+      },
+      {
+        "id": 11, "num": 11, "ch": "ch4", "likely": true,
+        "q": "องค์ประกอบการจัดการบันทึกเหตุการณ์ (Log Management) มีอะไรบ้าง?",
+        "a": "<ol class='list-decimal pl-6'><li><b class='kw'>Log Generation</b></li><li><b class='kw'>Log Transmission</b></li><li><b class='kw'>Log Storage & Disposal</b></li><li><b class='kw'>Log Analysis</b></li></ol>",
+        "ref": [
+          "จากไฟล์: Ch4_Incident Management and Cyber Resilience Framework _ Log.pdf — หน้า 46"
+        ]
+      },
+      {
+        "id": 12, "num": 12, "ch": "ch5", "likely": false,
+        "q": "3 ฟังก์ชันหลักของ IPS พร้อมตัวอย่างการทำงาน",
+        "a": "<ol class='list-decimal pl-6'><li><b class='kw'>Stops the attack</b> — block/terminate</li><li><b class='kw'>Changes the security environment</b> — ปรับ rule FW</li><li><b class='kw'>Changes the attack's content</b> — ลบไฟล์แนบอันตราย</li></ol>",
+        "ref": [
+          "จากไฟล์: Ch5_Intrusion Detection and Prevention Systems-2025.pdf — หน้า 6–8"
+        ]
+      },
+      {
+        "id": 13, "num": 13, "ch": "ch5", "likely": true,
+        "q": "วิธีการตรวจจับ (Detection Methodologies) ทั้ง 3 ลักษณะ",
+        "a": "<div class='table-wrap'><table class='compare'><thead><tr><th>วิธี</th><th>คีย์เวิร์ด</th><th>เด่น</th><th>จำกัด</th></tr></thead><tbody><tr><td><b class='kw'>Signature-based</b></td><td>ลายเซ็นที่รู้จัก</td><td>เร็ว/แม่นกับภัยเดิม</td><td>พลาด <b class='kw'>Zero-day</b></td></tr><tr><td><b class='kw'>Anomaly-based</b></td><td>เบี่ยงเบนจากปกติ</td><td>จับภัยใหม่ได้</td><td><b class='kw'>False Positive</b> สูง</td></tr><tr><td><b class='kw'>Stateful Protocol Analysis</b></td><td>ตามสเปคโปรโตคอล+สถานะ</td><td>แม่นกับการละเมิดโปรโตคอล</td><td>พลาดที่เลียนแบบทราฟฟิกปกติ</td></tr></tbody></table></div>",
+        "ref": [
+          "จากไฟล์: Ch5_Intrusion Detection and Prevention Systems-2025.pdf — หน้า 11–20"
+        ]
+      },
+      {
+        "id": 14, "num": 14, "ch": "ch5", "likely": true,
+        "q": "องค์ประกอบของ IDPS มีอะไรบ้าง?",
+        "a": "<ul class='list-disc pl-6'><li><b class='kw'>Sensor/Agent</b></li><li><b class='kw'>Management Server</b></li><li><b class='kw'>Database Server</b></li><li><b class='kw'>Console</b></li></ul>",
+        "ref": [
+          "จากไฟล์: Ch5_Intrusion Detection and Prevention Systems-2025.pdf — หน้า 21–24"
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- ===== App JS (รองรับแท็บ 🔥 ออกบ่อย) ===== -->
+  <script>
+    // State
+    let data = JSON.parse(document.getElementById('qa-json').textContent);
+    let bookmarks = JSON.parse(localStorage.getItem('qa_bm') || '[]');
+    let viewed = JSON.parse(localStorage.getItem('qa_viewed') || '[]');
+    let allOpen = false, chapter = 'all', bmOnly = false;
+
+    const host = document.getElementById('host');
+    const search = document.getElementById('search');
+    const bmCount = document.getElementById('bmCount');
+    const progressPct = document.getElementById('progressPct');
+    const bar = document.getElementById('bar');
+    const hotCountEl = document.getElementById('hotCount');
+
+    // แสดงจำนวนข้อ likely
+    const hotCount = data.questions.filter(q=>q.likely).length;
+    hotCountEl.textContent = hotCount;
+
+    function render(){
+      host.innerHTML = '';
+      const term = (search.value||'').toLowerCase();
+
+      data.questions.forEach((q, idx) => {
+        const inHot = q.likely;
+        const inCh = (chapter==='all' || (chapter==='hot' && inHot) || q.ch===chapter);
+        const isBM = bookmarks.includes(q.id);
+        const text = (q.q + ' ' + q.a).toLowerCase();
+        const match = text.includes(term);
+        if(!inCh || (bmOnly && !isBM) || !match) return;
+
+        const card = document.createElement('article');
+        card.className = 'card rounded-2xl p-5 shadow';
+        card.innerHTML = `
+          <div class="flex justify-between items-start cursor-pointer" data-click="toggle">
+            <div>
+              <span class="qchip">ข้อ ${q.num} — ${q.ch.toUpperCase()}</span>
+              <span class="${q.likely ? 'hot' : 'hidden'}">🔥 น่าจะออก</span>
+              <h3 class="mt-2 text-lg font-bold text-slate-900 dark:text-white">${q.q}</h3>
+            </div>
+            <button class="text-2xl ${isBM?'text-amber-400':''}" data-bm="1">${isBM?'★':'☆'}</button>
+          </div>
+          <div class="answer ${allOpen?'':'hidden'} mt-3 border-t border-slate-200 dark:border-slate-700 pt-3">
+            <div class="prose prose-slate max-w-none text-slate-800 dark:text-slate-100">${q.a}</div>
+            <div class="ref mt-3 p-3 rounded">${q.ref.map(r=>`• ${r}`).join('<br/>')}</div>
+          </div>
+        `;
+        host.appendChild(card);
+
+        card.querySelector('[data-click="toggle"]').addEventListener('click', (ev)=>{
+          if(ev.target.closest('[data-bm]')) return;
+          card.querySelector('.answer').classList.toggle('hidden');
+          if(!viewed.includes(q.id)){ viewed.push(q.id); localStorage.setItem('qa_viewed', JSON.stringify(viewed)); stat(); }
+        });
+        card.querySelector('[data-bm]').addEventListener('click', (ev)=>{
+          ev.stopPropagation();
+          toggleBM(q.id);
+          render();
+        });
+      });
+
+      stat();
+    }
+
+    function stat(){
+      bmCount.textContent = bookmarks.length;
+      const total = data.questions.length || 1;
+      const pct = Math.round((viewed.length/total)*100);
+      progressPct.textContent = pct + '%';
+      bar.style.width = pct + '%';
+    }
+    function toggleBM(id){
+      const i = bookmarks.indexOf(id);
+      if(i>=0) bookmarks.splice(i,1); else bookmarks.push(id);
+      localStorage.setItem('qa_bm', JSON.stringify(bookmarks));
+    }
+
+    // Controls
+    document.getElementById('toggleAll').onclick = ()=>{ allOpen=!allOpen; document.getElementById('toggleAll').textContent = allOpen?'📕 ซ่อนคำตอบทั้งหมด':'📖 แสดงคำตอบทั้งหมด'; render(); };
+    document.getElementById('showBM').onclick = ()=>{ bmOnly=!bmOnly; document.getElementById('showBM').textContent = bmOnly?'⭐ แสดงทั้งหมด':'⭐ เฉพาะบุ๊กมาร์ก'; render(); };
+    document.getElementById('theme').onclick = ()=>{
+      const cur = document.documentElement.getAttribute('data-theme');
+      const next = cur==='dark'?'light':'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      document.getElementById('themeIcon').textContent = next==='dark'?'☀️':'🌙';
+      localStorage.setItem('qa_theme', next);
+    };
+    // load saved theme
+    (function(){ const t = localStorage.getItem('qa_theme') || 'light'; document.documentElement.setAttribute('data-theme', t); document.getElementById('themeIcon').textContent = t==='dark'?'☀️':'🌙'; })();
+
+    // Tabs (รวมแท็บ hot)
+    document.getElementById('tabs').addEventListener('click', (e)=>{
+      const b = e.target.closest('button[data-ch]'); if(!b) return;
+      chapter = b.dataset.ch;
+      [...document.querySelectorAll('#tabs button')].forEach(x=>x.classList.remove('bg-white/70','dark:bg-slate-800'));
+      b.classList.add('bg-white/70','dark:bg-slate-800');
+      render();
+    });
+
+    document.getElementById('search').addEventListener('input', render);
+
+    // boot
+    render();
+  </script>
+</body>
+</html>
